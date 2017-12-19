@@ -1,0 +1,1132 @@
+@prefix dbr: <http://www.dbpedia.org/resource/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix qudt-1-1: <http://www.qudt.org/1.1/schema/qudt#> .
+@prefix qudt-unit-1-1: <http://www.qudt.org/1.1/vocab/unit#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sf: <http://www.opengis.net/ont/sf#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix step: <http://www.purl.org/net/step#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix vso: <http://www.purl.org/vso/ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://genivi.org/ns/vss#EngineSpeed> a sosa:ObservableProperty ;
+    rdfs:label "EngineSpeed" ;
+    qudt-1-1:Unit qudt-unit-1-1:RevolutionPerMinute .
+
+<http://genivi.org/ns/vss#TravelledDistance> a sosa:ObservableProperty ;
+    rdfs:label "TravelledDistance" ;
+    qudt-1-1:Unit qudt-unit-1-1:Kilometer .
+
+<http://genivi.org/ns/vss#Angle> a step:FeatureOfInterest,
+        sosa:ObservableProperty ;
+    rdfs:label "Angle" ;
+    qudt-1-1:Unit qudt-unit-1-1:DegreeAngle .
+
+<http://genivi.org/ns/vss#Speed> a step:FeatureOfInterest,
+        sosa:ObservableProperty ;
+    rdfs:label "Speed" ;
+    qudt-1-1:Unit qudt-unit-1-1:KilometerPerHour .
+
+[] a sosa:Observation ;
+    geo:lat "42.2958683187"^^xsd:long ;
+    geo:long "-83.2371439372"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:10"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "62.5338548737"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2957142145"^^xsd:long ;
+    geo:long "-83.2378742225"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:07"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "74.6877881852"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2959095181"^^xsd:long ;
+    geo:long "-83.2369241502"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:11"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "59.262059099"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2943540065"^^xsd:long ;
+    geo:long "-83.237275"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:36"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "90.8820393552"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2956875118"^^xsd:long ;
+    geo:long "-83.2387876583"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:04"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "92.998761214"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2954532525"^^xsd:long ;
+    geo:long "-83.2368396362"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:44"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "112.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2972503357"^^xsd:long ;
+    geo:long "-83.2384468081"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:55"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "-38.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2962983822"^^xsd:long ;
+    geo:long "-83.2372225489"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:49"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "-38.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2969048469"^^xsd:long ;
+    geo:long "-83.2393786233"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:58"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "-38.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2959465128"^^xsd:long ;
+    geo:long "-83.2367149627"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:12"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "56.3272741305"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2939121808"^^xsd:long ;
+    geo:long "-83.237275"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:34"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "0.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2941281676"^^xsd:long ;
+    geo:long "-83.237275"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:35"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "0.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2959795496"^^xsd:long ;
+    geo:long "-83.2365170198"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:13"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "53.6933494528"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2948202855"^^xsd:long ;
+    geo:long "-83.237275"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:38"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "0.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2964307893"^^xsd:long ;
+    geo:long "-83.239590936"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:00"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "-38.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2958335809"^^xsd:long ;
+    geo:long "-83.2374321764"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:47"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "97.7171005299"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2939121808"^^xsd:long ;
+    geo:long "-83.237275"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:34"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "84.8762502064"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2948202855"^^xsd:long ;
+    geo:long "-83.237275"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:38"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "94.791228625"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.297128937"^^xsd:long ;
+    geo:long "-83.2377636186"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:53"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "-38.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2960689181"^^xsd:long ;
+    geo:long "-83.2373310148"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:48"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "9.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2960090458"^^xsd:long ;
+    geo:long "-83.2363298428"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:14"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "3.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2956875118"^^xsd:long ;
+    geo:long "-83.2387876583"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:04"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "-38.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2960599634"^^xsd:long ;
+    geo:long "-83.2359779052"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:18"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "3.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2958223786"^^xsd:long ;
+    geo:long "-83.2373750983"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:09"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "3.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2955884371"^^xsd:long ;
+    geo:long "-83.2374250037"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:46"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "98.6864795662"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2969048469"^^xsd:long ;
+    geo:long "-83.2393786233"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:58"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "99.3227108103"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2960600639"^^xsd:long ;
+    geo:long "-83.2359771682"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:19"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "12.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2943540065"^^xsd:long ;
+    geo:long "-83.237275"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:36"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "0.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.29618822"^^xsd:long ;
+    geo:long "-83.2395275407"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:01"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "-38.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2945834439"^^xsd:long ;
+    geo:long "-83.237275"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:37"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "93.0451180876"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2955876348"^^xsd:long ;
+    geo:long "-83.2372749895"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:41"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "6.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2972026863"^^xsd:long ;
+    geo:long "-83.2388046336"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:56"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "-38.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2972503357"^^xsd:long ;
+    geo:long "-83.2384468081"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:55"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "97.3580831075"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2960317555"^^xsd:long ;
+    geo:long "-83.2361778813"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:15"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "3.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2960689181"^^xsd:long ;
+    geo:long "-83.2373310148"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:48"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "96.9585103612"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2967715006"^^xsd:long ;
+    geo:long "-83.2373034924"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:51"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "95.5264041294"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2960470335"^^xsd:long ;
+    geo:long "-83.2360712467"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:16"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "3.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.29596986"^^xsd:long ;
+    geo:long "-83.2393578901"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:02"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "97.7511510242"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2941281676"^^xsd:long ;
+    geo:long "-83.237275"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:35"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "88.1683714107"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2966793596"^^xsd:long ;
+    geo:long "-83.2395402438"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:59"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "99.7109399161"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2954532525"^^xsd:long ;
+    geo:long "-83.2368396362"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:44"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "99.7240924078"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2957975181"^^xsd:long ;
+    geo:long "-83.2391003452"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:03"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "96.9852323335"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2960563432"^^xsd:long ;
+    geo:long "-83.2360043428"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:17"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "3.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2970849344"^^xsd:long ;
+    geo:long "-83.2391237571"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:57"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "98.8222588278"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.29596986"^^xsd:long ;
+    geo:long "-83.2393578901"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:02"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "-38.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2960563432"^^xsd:long ;
+    geo:long "-83.2360043428"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:17"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "12.5731125208"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2957742301"^^xsd:long ;
+    geo:long "-83.2370814057"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:42"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "98.845412748"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2956443774"^^xsd:long ;
+    geo:long "-83.2384600712"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:05"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "85.8457294168"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2960599634"^^xsd:long ;
+    geo:long "-83.2359779052"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:18"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "1.97420603927"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2970849344"^^xsd:long ;
+    geo:long "-83.2391237571"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:57"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "-38.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2950609208"^^xsd:long ;
+    geo:long "-83.237275"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:39"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "96.1716986707"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2969737092"^^xsd:long ;
+    geo:long "-83.2374938802"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:52"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "95.232962898"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2966793596"^^xsd:long ;
+    geo:long "-83.2395402438"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:59"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "-38.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2962983822"^^xsd:long ;
+    geo:long "-83.2372225489"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:49"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "96.3679728477"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2956603266"^^xsd:long ;
+    geo:long "-83.2381517073"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:06"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "79.7857418964"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2958335809"^^xsd:long ;
+    geo:long "-83.2374321764"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:47"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "34.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2957709725"^^xsd:long ;
+    geo:long "-83.2376189656"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:08"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "3.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2960090458"^^xsd:long ;
+    geo:long "-83.2363298428"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:14"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "47.0531054919"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2964307893"^^xsd:long ;
+    geo:long "-83.239590936"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:00"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "99.9687229092"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2956820917"^^xsd:long ;
+    geo:long "-83.2367678322"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:43"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "167.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2967715006"^^xsd:long ;
+    geo:long "-83.2373034924"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:51"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "-38.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2957975181"^^xsd:long ;
+    geo:long "-83.2391003452"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:03"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "-38.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2972237077"^^xsd:long ;
+    geo:long "-83.2380876645"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:54"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "96.3007054656"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2960470335"^^xsd:long ;
+    geo:long "-83.2360712467"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:16"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "23.7743026128"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.29618822"^^xsd:long ;
+    geo:long "-83.2395275407"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:01"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "98.7292950895"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2959795496"^^xsd:long ;
+    geo:long "-83.2365170198"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:13"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "3.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2953411815"^^xsd:long ;
+    geo:long "-83.237275"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:40"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "0.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2958223786"^^xsd:long ;
+    geo:long "-83.2373750983"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:09"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "66.210774169"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2956443774"^^xsd:long ;
+    geo:long "-83.2384600712"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:05"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "-38.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2959465128"^^xsd:long ;
+    geo:long "-83.2367149627"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:12"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "3.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2955884371"^^xsd:long ;
+    geo:long "-83.2374250037"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:46"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "101.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2953411815"^^xsd:long ;
+    geo:long "-83.237275"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:40"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "97.3968292687"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2958683187"^^xsd:long ;
+    geo:long "-83.2371439372"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:10"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "3.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2959095181"^^xsd:long ;
+    geo:long "-83.2369241502"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:11"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "3.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2969737092"^^xsd:long ;
+    geo:long "-83.2374938802"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:52"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "-38.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2954120705"^^xsd:long ;
+    geo:long "-83.2371782378"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:45"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "90.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2957142145"^^xsd:long ;
+    geo:long "-83.2378742225"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:07"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "-2.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2972237077"^^xsd:long ;
+    geo:long "-83.2380876645"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:54"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "-38.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2954120705"^^xsd:long ;
+    geo:long "-83.2371782378"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:45"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "99.930544899"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2945834439"^^xsd:long ;
+    geo:long "-83.237275"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:37"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "0.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2957709725"^^xsd:long ;
+    geo:long "-83.2376189656"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:08"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "70.348122968"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2956820917"^^xsd:long ;
+    geo:long "-83.2367678322"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:43"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "99.3407152871"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2972026863"^^xsd:long ;
+    geo:long "-83.2388046336"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:56"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "98.1844566941"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2955876348"^^xsd:long ;
+    geo:long "-83.2372749895"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:41"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "98.214575783"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2956603266"^^xsd:long ;
+    geo:long "-83.2381517073"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:06"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "-32.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2965399616"^^xsd:long ;
+    geo:long "-83.2372099186"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:50"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "95.8970806106"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2950609208"^^xsd:long ;
+    geo:long "-83.237275"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:39"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "0.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.297128937"^^xsd:long ;
+    geo:long "-83.2377636186"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:53"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "95.0005113198"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2960317555"^^xsd:long ;
+    geo:long "-83.2361778813"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:15"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "35.047635041"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2957742301"^^xsd:long ;
+    geo:long "-83.2370814057"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:42"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "167.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2960600639"^^xsd:long ;
+    geo:long "-83.2359771682"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:57:19"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "0.0"^^xsd:int ] ;
+    sosa:madeBySensor _:Na1f49308d5b4491dadf6726a9cbcb42e ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Speed> .
+
+[] a sosa:Observation ;
+    geo:lat "42.2965399616"^^xsd:long ;
+    geo:long "-83.2372099186"^^xsd:long ;
+    sosa:PhenomenonTime "2017-12-19 07:56:50"^^xsd:dateTime ;
+    sosa:hasFeatureOfInterest _:N752bbb325e8742029ab6a789ff642590 ;
+    sosa:hasResult [ a qudt-1-1:QuantityValue ;
+            qudt-1-1:numericValue "-38.0"^^xsd:short ] ;
+    sosa:madeBySensor _:N257cb7001c5b4ef49fba84bf4fe6d3e2 ;
+    sosa:observedProperty <http://genivi.org/ns/vss#Angle> .
+
+_:N0508540c3ba7458f9851933ab8735991 a step:Fix ;
+    sf:Point "42.2955876348-83.2372749895"^^sf:WktLiteral ;
+    time:Instant "2017-12-19 07:56:41"^^xsd:dateTime .
+
+_:N0baa86cd4aa045b397231c81ac31076f a step:Fix ;
+    sf:Point "42.2955884371-83.2374250037"^^sf:WktLiteral ;
+    time:Instant "2017-12-19 07:56:46"^^xsd:dateTime .
+
+_:N0c763724caa7498db65be50d7884abd5 a step:Fix ;
+    sf:Point "42.2958335809-83.2374321764"^^sf:WktLiteral ;
+    time:Instant "2017-12-19 07:56:47"^^xsd:dateTime .
+
+_:N197abfbb2f354352a8b52ca1eac9a6ea a step:Fix ;
+    sf:Point "42.2948202855-83.237275"^^sf:WktLiteral ;
+    time:Instant "2017-12-19 07:56:38"^^xsd:dateTime .
+
+_:N1ce293e3b3ad4999aa62ac12b1cd01d8 a step:Fix ;
+    sf:Point "42.2954120705-83.2371782378"^^sf:WktLiteral ;
+    time:Instant "2017-12-19 07:56:45"^^xsd:dateTime .
+
+_:N1e6fa78adbd8445f85a37f17e904fd90 a step:Trajectory ;
+    step:hasFeature <http://genivi.org/ns/vss#Angle>,
+        <http://genivi.org/ns/vss#Speed> ;
+    step:hasRawTrajectory [ a step:RawTrajectory ;
+            step:hasFix _:N0508540c3ba7458f9851933ab8735991,
+                _:N0baa86cd4aa045b397231c81ac31076f,
+                _:N0c763724caa7498db65be50d7884abd5,
+                _:N197abfbb2f354352a8b52ca1eac9a6ea,
+                _:N1ce293e3b3ad4999aa62ac12b1cd01d8,
+                [ a step:Fix ;
+                    sf:Point "42.2962983822-83.2372225489"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:56:49"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2950609208-83.237275"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:56:39"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2953411815-83.237275"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:56:40"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2960600639-83.2359771682"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:57:19"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2960470335-83.2360712467"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:57:16"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2959465128-83.2367149627"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:57:12"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2957742301-83.2370814057"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:56:42"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2960563432-83.2360043428"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:57:17"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2960090458-83.2363298428"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:57:14"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2965399616-83.2372099186"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:56:50"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2943540065-83.237275"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:56:36"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2954532525-83.2368396362"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:56:44"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2957142145-83.2378742225"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:57:07"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2956443774-83.2384600712"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:57:05"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2958223786-83.2373750983"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:57:09"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2972237077-83.2380876645"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:56:54"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2956603266-83.2381517073"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:57:06"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2964307893-83.239590936"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:57:00"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2969048469-83.2393786233"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:56:58"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2945834439-83.237275"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:56:37"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2970849344-83.2391237571"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:56:57"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2960317555-83.2361778813"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:57:15"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2959095181-83.2369241502"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:57:11"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.29596986-83.2393578901"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:57:02"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2966793596-83.2395402438"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:56:59"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2956875118-83.2387876583"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:57:04"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2967715006-83.2373034924"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:56:51"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2941281676-83.237275"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:56:35"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2939121808-83.237275"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:56:34"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.29618822-83.2395275407"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:57:01"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2969737092-83.2374938802"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:56:52"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2958683187-83.2371439372"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:57:10"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2956820917-83.2367678322"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:56:43"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2957709725-83.2376189656"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:57:08"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2960689181-83.2373310148"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:56:48"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.297128937-83.2377636186"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:56:53"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2972026863-83.2388046336"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:56:56"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2972503357-83.2384468081"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:56:55"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2957975181-83.2391003452"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:57:03"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2960599634-83.2359779052"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:57:18"^^xsd:dateTime ],
+                [ a step:Fix ;
+                    sf:Point "42.2959795496-83.2365170198"^^sf:WktLiteral ;
+                    time:Instant "2017-12-19 07:57:13"^^xsd:dateTime ] ] .
+
+_:N2b0a9d168c814f25b66d7cb183386fe8 a <http://genivi.org/ns/vss#Tachometer>,
+        vso:FeatureValue ;
+    sosa:observes <http://genivi.org/ns/vss#EngineSpeed> .
+
+_:N3e154639998f44d196aec3956472bd2c a <http://genivi.org/ns/vss#Odometer>,
+        vso:FeatureValue ;
+    sosa:observes <http://genivi.org/ns/vss#TravelledDistance> .
+
+_:N257cb7001c5b4ef49fba84bf4fe6d3e2 a <http://genivi.org/ns/vss#SteeringAngleSensor>,
+        vso:FeatureValue ;
+    sosa:observes <http://genivi.org/ns/vss#Angle> .
+
+_:Na1f49308d5b4491dadf6726a9cbcb42e a <http://genivi.org/ns/vss#Speedometer>,
+        vso:FeatureValue ;
+    sosa:observes <http://genivi.org/ns/vss#Speed> .
+
+_:N752bbb325e8742029ab6a789ff642590 a geo:Feature,
+        step:Agent,
+        vso:Automobile,
+        sosa:FeatureOfInterest ;
+    step:hasTrajectory _:N1e6fa78adbd8445f85a37f17e904fd90 ;
+    vso:feature _:N257cb7001c5b4ef49fba84bf4fe6d3e2,
+        _:N2b0a9d168c814f25b66d7cb183386fe8,
+        _:N3e154639998f44d196aec3956472bd2c,
+        _:Na1f49308d5b4491dadf6726a9cbcb42e .
+

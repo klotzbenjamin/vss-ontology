@@ -1,0 +1,2 @@
+Signal.Drivetrain.Transmission.Speed,http://127.0.0.1:50000/_get_data,vehicle_speed
+Signal.Drivetrain.Transmission.TravelledDistance,http://127.0.0.1:50000/_get_data,odometer
