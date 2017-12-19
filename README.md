@@ -22,7 +22,7 @@ It will generate a JSON file of signal values available at
 
 ```
 
-##Setup of signal definitions
+## Setup of signal definitions
 In Configuration.csv, there is a line for each signal known by the vehicle. You can add more signal following the VSS:
 ```
 https://github.com/GENIVI/vehicle_signal_specification/
@@ -36,23 +36,26 @@ python car_data_extraction.py
 
 ```
 
-##Attach Attributes to the car
+## Attach Attributes to the car
 ```shell
 127.0.0.1:5000/addAttributes
 ```
 Will create RDF triples about sensors and signal using to the Vehicle Sales Ontology for the vehicles features, from the known signals in COnfiguration.csv and enriched with the VSS ontology.
 
-##Observe signals
+## Observe signals
 ```shell
 127.0.0.1:5000/addObservation/[time span]/[period of requests]/[Signal1,Signal2...]
 ```
 Will add RDF triples about signal values on the existing graph using instances of SOSA:Observations. It will also create an instance of STEP:Trajectory and record fix points for filling the raw trajectory.
 
-##Reduce trajectories
+## Reduce trajectories
+```shell
+127.0.0.1:5000/reduce/[Signal1,Signal2...]
+```
+Will do a SPARQL query on the trajectory graph to produce a reducedTrajectory.csv file with format (latiture, longitude, time, [values])
 
-##Plot points
+## Visualize signal variations
 
-##Visualize signal variations
 
-##Visualize a driving smoothness label
+## Visualize a driving smoothness label
 
