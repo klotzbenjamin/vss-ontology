@@ -55,7 +55,11 @@ Will add RDF triples about signal values on the existing graph using instances o
 Will do a SPARQL query on the trajectory graph to produce a reducedTrajectory.csv file with format (latiture, longitude, time, [values])
 
 ## Visualize signal variations
-
+You can visualize the variations of a signal values over a recorded trajectory.
+```shell
+127.0.0.1:5000/variation/[time span]/[period of requests]/[Signal]/[offset]
+```
+It will create a vehicle graph and add attributes and observation of the given [Signal] with during [time span] seconds with a period of [period of requests]. Then a label is generated for sub-trajectories (is increasing, is decreasing, is constant) depending if the signal value changed by more than [offset] between 2 observations. Each label is associated with a color, red for increasing value yellow if constant, green if decreasing.
 
 ## Visualize a driving smoothness label
 
