@@ -60,6 +60,12 @@ You can visualize the variations of a signal values over a recorded trajectory.
 127.0.0.1:5000/variation/[time span]/[period of requests]/[Signal]/[offset]
 ```
 It will create a vehicle graph and add attributes and observation of the given [Signal] with during [time span] seconds with a period of [period of requests]. Then a label is generated for sub-trajectories (is increasing, is decreasing, is constant) depending if the signal value changed by more than [offset] between 2 observations. Each label is associated with a color, red for increasing value yellow if constant, green if decreasing.
+Segment labels are attached to the trajectory instance in the vehicle graph.
 
 ## Visualize a driving smoothness label
-
+You can visualize a "driving smoothness" label over a recorded trajectory. It is defined as a local binary value on each segment depending if longitudinal and angular acceleration are bounded by a given pair of offset, and by a global percentage over a trajectory (percentage of segments labeled True).
+```shell
+127.0.0.1:5000/smoothdriving/[time span]/[Acceleration offset]/[Angular acceleration offset]
+```
+A googlemap is generated with 2 colors: smooth segments in white, the rest in black. 
+Segment labels are attached to the trajectory instance in the vehicle graph, as well as the global smoothness percentage.
