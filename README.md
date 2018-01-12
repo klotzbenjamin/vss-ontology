@@ -55,7 +55,6 @@ For instance, to record the Speed and Engine speed signals every second for 10s 
 '''
 127.0.0.1:5000/addObservation/10/1/Speed,EngineSpeed
 '''
-![alt test](https://raw.githubusercontent.com/klotzbenjamin/VSSontology/master/ex-observation-speed.PNG)
 
 ### Reduce trajectories
 ```shell
