@@ -2,7 +2,7 @@
 This folder contains a python scripts that reads data on a car simulation running on a local server, and writes RDF triples that describe the state of the vehicle linked to its trajectory using a combination of the SOSA, STEP and VSS ontologies.
 The "VSS ontology" folder contains the Vehicle Signal Specification in a JS file, the JS script that translates it into RDF triples and the output: an ontologized VSS.
 
-##Setup
+## Setup
 ### Setup of the vehicle simulator
 You will need to install the vehicle simulation, and run it locally
 ```shell
@@ -38,7 +38,7 @@ python car_data_extraction.py
 
 ```
 
-##Functions usage
+## Functions usage
 
 ### Attach Attributes to the car
 ```shell
@@ -62,7 +62,7 @@ For instance, to record the Speed and Engine speed signals every second for 10s 
 ```
 Will do a SPARQL query on the trajectory graph to produce a reducedTrajectory.csv file with format (latiture, longitude, time, [values])
 
-##Use cases
+## Use cases
 
 ### Visualize signal variations
 You can visualize the variations of a signal values over a recorded trajectory.
