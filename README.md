@@ -79,3 +79,6 @@ You can visualize a "driving smoothness" label over a recorded trajectory. It is
 ```
 A googlemap is generated with 2 colors: smooth segments in white, the rest in black. 
 Segment labels are attached to the trajectory instance in the vehicle graph, as well as the global smoothness percentage.
+
+## Screencast
+https://youtu.be/2Rl3Uk53BMg
