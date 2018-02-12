@@ -1,5 +1,5 @@
 # Linked data extraction from a simulated vehicle
-This folder contains a python scripts that reads data on a car simulation running on a local server, and writes RDF triples that describe the state of the vehicle linked to its trajectory using a combination of the SOSA, STEP and VSS ontologies.
+This folder contains a python scripts that reads data on a car simulation running on a local server, and writes RDF triples that describe the state of the vehicle linked to its trajectory using a combination of the SOSA, STEP and VSS ontologies. The VSS ontology is based on [GENIVI's Vehicle Signal SPecification](https://github.com/GENIVI/vehicle_signal_specification).
 The "VSS ontology" folder contains the Vehicle Signal Specification in a JS file, the JS script that translates it into RDF triples and the output: an ontologized VSS.
 
 ## Setup
@@ -25,11 +25,11 @@ It will generate a JSON file of signal values available at
 ```
 
 ### Setup of signal definitions
-In Configuration.csv, there is a line for each signal known by the vehicle. You can add more signal following the VSS:
+In [Configuration.csv](Configuration.csv), there is a line for each signal known by the vehicle. You can add more signal following the VSS:
 ```
 https://github.com/GENIVI/vehicle_signal_specification/
 ```
-You can select a VSS ontology between a small one (vssLite.ttl) with only 4 signals for comprehensiveness, and the full one (vssFull.ttl).
+You can select a VSS ontology between a small one ([vssLite.ttl](vssLite.ttl)) with only 4 signals for comprehensiveness, and the full one ([vssFull.ttl](vssFull.ttl)).
 
 ### Starting the script
 Run the car_data_extraction.py script
@@ -44,7 +44,7 @@ python car_data_extraction.py
 ```shell
 127.0.0.1:5000/addAttributes
 ```
-Will create RDF triples about sensors and signal using to the Vehicle Sales Ontology for the vehicles features, from the known signals in COnfiguration.csv and enriched with the VSS ontology.
+Will create RDF triples about sensors and signal using to the Vehicle Sales Ontology for the vehicles features, from the known signals in [Configuration.csv](Configuration.csv) and enriched with the VSS ontology.
 
 ### Observe signals
 ```shell
