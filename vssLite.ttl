@@ -49,18 +49,18 @@ vss:Transmission a rdfs:Class, owl:Class;
         a owl:Restriction;
         owl:onProperty vss:hasSignal;
         owl:someValuesFrom vss:TravelledDistance, vss:VehicleSpeed.
-    ].
+    ] .
 
 vss:SteeringWheel a rdfs:Class, owl:Class;
     rdfs:subClassOf vss:Branch;
     rdfs:label "SteeringWheel"@en;
     rdfs:comment "Chassis.SteeringWheel. Steering wheel signals."@en;
     vss:partOf vss:Chassis;
-    rdfs:subClassOf {
+    rdfs:subClassOf [
         a owl:Restriction;
-        owl:onProperty vss:hasSignal>;
+        owl:onProperty vss:hasSignal;
         owl:someValuesFrom vss:TravelledDistance, vss:SteeringWheelAngle.
-    }.
+    ].
 
 vss:TravelledDistance a rdfs:Class, owl:Class;
     rdfs:subClassOf vss:Signal;
@@ -69,9 +69,9 @@ vss:TravelledDistance a rdfs:Class, owl:Class;
     rdfs:subClassOf [
         a owl:Restriction;
         owl:onProperty sosa:isObservedBy;
-        owl:allValuesFrom ss:Odometer.
+        owl:allValuesFrom vss:Odometer.
     ],
-    rdfs:subClassOf [
+    [
         a owl:Restriction;
         owl:onProperty qudt-1-1:unit;
         owl:allValuesFrom qudt-unit-1-1:Kilometer.
@@ -86,7 +86,7 @@ vss:Speed a rdfs:Class, owl:Class;
         owl:onProperty sosa:isObservedBy;
         owl:allValuesFrom vss:Speedometer.
     ],
-    rdfs:subClassOf [
+    [
         a owl:Restriction;
         owl:onProperty qudt-1-1:unit;
         owl:allValuesFrom qudt-unit-1-1:KilometerPerHour.
@@ -101,7 +101,7 @@ vss:SteeringWheelAngle a rdfs:Class, owl:Class;
         owl:onProperty sosa:isObservedBy;
         owl:allValuesFrom vss:SteeringAngleSensor.
     ],
-    rdfs:subClassOf [
+    [
         a owl:Restriction;
         owl:onProperty qudt-1-1:unit;
         owl:allValuesFrom qudt-unit-1-1:DegreeAngle.
