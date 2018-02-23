@@ -7,7 +7,7 @@
 @prefix sosa: <http://www.w3.org/ns/sosa/>.
 @prefix qudt-1-1: <http://www.qudt.org/1.1/schema/qudt#> .
 @prefix qudt-unit-1-1: <http://www.qudt.org/1.1/vocab/unit#> .
-@prefix vss: <https://raw.githubusercontent.com/klotzbenjamin/VSSontology/master/vssLite.ttl/> .
+@prefix vss: <https://raw.githubusercontent.com/klotzbenjamin/VSSontology/master/vssLite.ttl#> .
 
 <https://raw.githubusercontent.com/klotzbenjamin/VSSontology/master/vssLite.ttl> a owl:Ontology.
 
@@ -48,7 +48,8 @@ vss:Transmission a rdfs:Class, owl:Class;
     rdfs:subClassOf [
         a owl:Restriction;
         owl:onProperty vss:hasSignal;
-        owl:someValuesFrom vss:TravelledDistance, vss:VehicleSpeed.
+        owl:someValuesFrom vss:TravelledDistance;
+        owl:someValuesFrom vss:VehicleSpeed.
     ] .
 
 vss:SteeringWheel a rdfs:Class, owl:Class;
@@ -77,7 +78,7 @@ vss:TravelledDistance a rdfs:Class, owl:Class;
         owl:allValuesFrom qudt-unit-1-1:Kilometer.
     ].
 
-vss:Speed a rdfs:Class, owl:Class;
+vss:VehicleSpeed a rdfs:Class, owl:Class;
     rdfs:subClassOf vss:Signal;
     rdfs:label "Speed"@en;
     rdfs:comment "Signal.Drivetrain.Transmission.VehicleSpeed. Vehicle speed, as sensed by the gearbox."@en;
