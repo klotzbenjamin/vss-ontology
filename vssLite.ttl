@@ -17,7 +17,7 @@ vss:partOf a owl:ObjectProperty, owl:TransitiveProperty.
 
 vss:hasValue a owl:DatatypeProperty, owl:FunctionalProperty.
 
-vss:attribute a rdfs:ObjectProperty;
+vss:attribute a owl:ObjectProperty;
     rdfs:comment "Attribute signals that do not change during the power cycle of a vehicle."@en.
 
 vss:hasAttribute a owl:DatatypeProperty.
