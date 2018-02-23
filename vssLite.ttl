@@ -59,7 +59,7 @@ vss:SteeringWheel a rdfs:Class, owl:Class;
     rdfs:subClassOf [
         a owl:Restriction;
         owl:onProperty vss:hasSignal;
-        owl:someValuesFrom vss:TravelledDistance, vss:SteeringWheelAngle.
+        owl:someValuesFrom vss:SteeringWheelAngle.
     ].
 
 vss:TravelledDistance a rdfs:Class, owl:Class;
