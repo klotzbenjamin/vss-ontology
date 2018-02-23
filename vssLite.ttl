@@ -7,7 +7,7 @@
 @prefix sosa: <http://www.w3.org/ns/sosa/>.
 @prefix qudt-1-1: <http://www.qudt.org/1.1/schema/qudt#> .
 @prefix qudt-unit-1-1: <http://www.qudt.org/1.1/vocab/unit#> .
-@prefix vss: <https://raw.githubusercontent.com/klotzbenjamin/VSSontology/master/vssLite.ttl> .
+@prefix vss: <https://raw.githubusercontent.com/klotzbenjamin/VSSontology/master/vssLite.ttl/> .
 
 <https://raw.githubusercontent.com/klotzbenjamin/VSSontology/master/vssLite.ttl> a owl:Ontology.
 
