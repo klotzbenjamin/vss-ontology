@@ -23,7 +23,7 @@ vss:attribute a rdfs:ObjectProperty;
 vss:hasAttribute a owl:DatatypeProperty.
 
 vss:Signal a rdfs:Class, owl:Class;
-    rdfs:subClassOf sosa:ObservableProperty, sosa:ActuableProperty.
+    rdfs:subClassOf sosa:ObservableProperty, sosa:ActuableProperty;
     rdfs:comment "All signals that can dynamically be updated by the vehicle"@en.
 
 vss:hasSignal a owl:ObjectProperty.
