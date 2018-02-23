@@ -47,7 +47,7 @@ vss:Transmission a rdfs:Class, owl:Class;
     vss:partOf vss:Drivetrain;
     rdfs:subClassOf [
         a owl:Restriction;
-        owl:onProperty vss:hasSignal>;
+        owl:onProperty vss:hasSignal;
         owl:someValuesFrom vss:TravelledDistance, vss:VehicleSpeed.
     ].
 
