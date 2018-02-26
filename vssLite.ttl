@@ -69,7 +69,7 @@ vss:Transmission a rdfs:Class, owl:Class;
     rdfs:subClassOf [
         a owl:Restriction;
         owl:onProperty vss:hasSignal;
-        owl:allValuesFrom owl:unionOf(vss:TravelledDistance vss:VehicleSpeed).
+        owl:allValuesFrom [owl:unionOf(vss:TravelledDistance vss:VehicleSpeed)].
     ] .
 
 vss:SteeringWheel a rdfs:Class, owl:Class;
