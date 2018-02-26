@@ -11,60 +11,84 @@
 
 <https://raw.githubusercontent.com/klotzbenjamin/VSSontology/master/vssLite.ttl> a owl:Ontology.
 
-vss:Branch a rdfs:Class, owl:Class.
+vss:Branch a rdfs:Class, owl:Class;
+    rdfs:label "Branch"@en.
 
-vss:partOf a owl:ObjectProperty, owl:TransitiveProperty.
+vss:partOf a owl:ObjectProperty, owl:TransitiveProperty;
+    rdfs:label "part of"@en.
 
-vss:hasValue a owl:DatatypeProperty, owl:FunctionalProperty.
+vss:hasValue a owl:DatatypeProperty, owl:FunctionalProperty;
+    rdfs:label "has value"@en.
 
 vss:attribute a owl:ObjectProperty;
+    rdfs:label "Attribute"@en;
     rdfs:comment "Attribute signals that do not change during the power cycle of a vehicle."@en.
 
-vss:hasAttribute a owl:DatatypeProperty.
+vss:ObservableSignal a rdfs:Class, owl:Class;
+    rdfs:subClassOf sosa:ObservableProperty;
+    rdfs:label "Observable signal"@en;
+    rdfs:comment "All observable signals that can dynamically be updated by the vehicle"@en.
 
-vss:Signal a rdfs:Class, owl:Class;
-    rdfs:subClassOf sosa:ObservableProperty, sosa:ActuableProperty;
-    rdfs:comment "All signals that can dynamically be updated by the vehicle"@en.
+vss:ActuableSignal a rdfs:Class, owl:Class;
+    rdfs:subClassOf sosa:ActuableProperty;
+    rdfs:label "Actuable signal"@en;
+    rdfs:comment "All actuable signals that can dynamically be updated by the vehicle"@en.
 
-vss:hasSignal a owl:ObjectProperty.
+vss:hasSignal a owl:ObjectProperty;
+    rdfs:label "has signal"@en.
 
 vss:Drivetrain a rdfs:Class, owl:Class;
     rdfs:subClassOf vss:Branch;
-    vss:partOf vss:Vehicle;
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty vss:partOf;
+        owl:allValuesFrom vss:Vehicle.
+    ];
     rdfs:label "Drivetrain"@en;
     rdfs:comment "Drivetrain. All body components"@en.
 
 vss:Chassis a rdfs:Class, owl:Class;
     rdfs:subClassOf vss:Branch;
-    vss:partOf vss:Vehicle;
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty vss:partOf;
+        owl:allValuesFrom vss:Vehicle.
+    ];
     rdfs:label "Chassis"@en;
     rdfs:comment "Chassis. All signals concerning steering, suspension, wheels, and brakes."@en.
 
 vss:Transmission a rdfs:Class, owl:Class;
     rdfs:subClassOf vss:Branch;
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty vss:partOf;
+        owl:allValuesFrom vss:Drivetrain.
+    ];
     rdfs:label "Transmission"@en;
     rdfs:comment "Drivetrain.Transmission. Transmission-specific data, stopping at the drive shafts."@en;
-    vss:partOf vss:Drivetrain;
     rdfs:subClassOf [
         a owl:Restriction;
         owl:onProperty vss:hasSignal;
-        owl:someValuesFrom vss:TravelledDistance;
-        owl:someValuesFrom vss:VehicleSpeed.
+        owl:allValuesFrom owl:unionOf(vss:TravelledDistance vss:VehicleSpeed).
     ] .
 
 vss:SteeringWheel a rdfs:Class, owl:Class;
     rdfs:subClassOf vss:Branch;
     rdfs:label "SteeringWheel"@en;
     rdfs:comment "Chassis.SteeringWheel. Steering wheel signals."@en;
-    vss:partOf vss:Chassis;
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty vss:partOf;
+        owl:allValuesFrom vss:Chassis.
+    ];
     rdfs:subClassOf [
         a owl:Restriction;
         owl:onProperty vss:hasSignal;
-        owl:someValuesFrom vss:SteeringWheelAngle.
+        owl:allValuesFrom vss:SteeringWheelAngle.
     ].
 
 vss:TravelledDistance a rdfs:Class, owl:Class;
-    rdfs:subClassOf vss:Signal;
+    rdfs:subClassOf vss:ObservableSignal;
     rdfs:label "TravelledDistance"@en;
     rdfs:comment "Signal.Drivetrain.Transmission.TravelledDistance. Odometer reading."@en;
     rdfs:subClassOf [
@@ -79,7 +103,7 @@ vss:TravelledDistance a rdfs:Class, owl:Class;
     ].
 
 vss:VehicleSpeed a rdfs:Class, owl:Class;
-    rdfs:subClassOf vss:Signal;
+    rdfs:subClassOf vss:ObservableSignal;
     rdfs:label "Speed"@en;
     rdfs:comment "Signal.Drivetrain.Transmission.VehicleSpeed. Vehicle speed, as sensed by the gearbox."@en;
     rdfs:subClassOf [
@@ -94,7 +118,7 @@ vss:VehicleSpeed a rdfs:Class, owl:Class;
     ].
 
 vss:SteeringWheelAngle a rdfs:Class, owl:Class;
-    rdfs:subClassOf vss:Signal;
+    rdfs:subClassOf vss:ObservableSignal;
     rdfs:label "SteeringWheelAngle"@en;
     rdfs:comment "Signal.Chassis.SteeringWheel.Angle. Steering wheel angle. Positive = degrees to the left. Negative = degrees to the right."@en;
     rdfs:subClassOf [
