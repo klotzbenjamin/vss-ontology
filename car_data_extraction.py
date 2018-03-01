@@ -9,7 +9,7 @@ import os
 from StringIO import StringIO
 import requests, time
 from requests.auth import HTTPBasicAuth
-from rdflib import Graph, Literal, BNode, Namespace, RDF, URIRef, OWL
+from rdflib import Graph, Literal, BNode, Namespace, RDF, URIRef, OWL, XSD
 from rdflib.namespace import DC, FOAF, Namespace, NamespaceManager,XSD
 from time import gmtime, strftime
 
@@ -42,6 +42,7 @@ MyCar=BNode()
 MyTrajectory=BNode()
 MyRawTrajectory=BNode()
 
+
 class Signal(object):
     uri =""
     sensor = ""
@@ -71,7 +72,7 @@ def isLinkUnique(urlList):
     return len(set(urlList))<=1
 
 def getCarConfig():
-    file=open("Configuration2.csv","r")
+    file=open("Configuration.csv","r")
     rawSignalList= file.read().split('\n')
     signalList=[]
     for signal in rawSignalList:
@@ -113,6 +114,9 @@ def getVSS(l):
                             unit = gVSS.value(y, owl.allValuesFrom)
                         if gVSS.value(y,owl.onProperty,None)==vss.hasValue:
                             datatype = gVSS.value(y, owl.allValuesFrom)
+                print sensor
+                print unit
+                print datatype
                 output.append(make_signal(x,sensor,unit,datatype))
 
     return output
@@ -221,8 +225,8 @@ def addobservation_simulator(duration,period,signalList):
             start_time=time.time()
             MyFix=BNode()
             g.add((MyRawTrajectory,step.hasFix,MyFix))
-            g.add((MyFix,otime.Instant,Literal(str(strftime("%Y-%m-%d %H:%M:%S", gmtime())),datatype=XSD.dateTime)))
-            g.add((MyFix,sf.Point,Literal(str(resp['latitude'])+str(resp['longitude']),datatype=sf.WktLiteral)))
+            g.add((MyFix,otime.Instant,Literal(str(strftime("%Y-%m-%dT%H:%M:%S", gmtime())),datatype=XSD.dateTime)))
+            g.add((MyFix,sf.Point,Literal("POINT("+str(resp['latitude'])+" "+str(resp['longitude'])+")",datatype=sf.WktLiteral)))
             g.add((MyFix,RDF.type,step.Fix))
             #g.add((MyFix,sf.Point,MyPoint))
             for x in observedSignals:
@@ -237,9 +241,12 @@ def addobservation_simulator(duration,period,signalList):
                 g.add((Observation, sosa.hasFeatureOfInterest, MyCar))
                 g.add((Observation, RDF.type, sosa.Observation))
                 g.add((Observation, sosa.hasResult, Result))
-                g.add((Observation, sosa.PhenomenonTime, Literal(str(strftime("%Y-%m-%d %H:%M:%S", gmtime())),datatype=XSD.dateTime)))
+                g.add((Observation, sosa.PhenomenonTime, Literal(str(strftime("%Y-%m-%dT%H:%M:%S", gmtime())),datatype=XSD.datetime)))
+                g.add((Observation,rdfs.seeAlso,MyFix))
                 g.add((Result, RDF.type, qudt11.QuantityValue))
-                g.add((Result, qudt11.numericValue, Literal(str(resp[localNames[i]]),datatype=xsdList[i])))
+                print "value"
+                print resp[localNames[i]]
+                g.add((Result, qudt11.numericValue, Literal(str(resp[localNames[i]]), datatype=XSD.double )))#TODO: check datatype
                 g.add((Observation, sosa.madeBySensor, sensorList[i]))
                 g.add((MyTrajectory,step.hasFeature,signalList[i]))
                 g.add((Observation,sosa.observedProperty,signalList[i]))
@@ -455,7 +462,7 @@ def variationSegmentmap(offset):
 
             if currentSegmentType!=segmentType:
                 Episode=BNode()
-                gV.add((vss.Speed,step.hasEpisode,Episode))
+                gV.add((vss.Speed,step.hasEpisode,Episode))#TODONOW!
                 gV.add((Episode,step.hasSemanticDescription,Literal(segmentType)))
             gV.add((Episode,step.hasExtent,pointFix))
 
@@ -711,8 +718,6 @@ def segmentmapold(offset):
     ),
     )
     return render_template('example_polymap.html', plinemap=plinemap)
-
-
 
 
 if __name__ == '__main__':
