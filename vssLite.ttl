@@ -37,7 +37,7 @@ vss:driveType a owl:ObjectProperty;
     rdfs:comment "Drive type."@en;
     rdfs:subPropertyOf vss:attribute;
     rdfs:domain vss:Transmission;
-    rdfs:range [owl:oneOf "unknown"@en "fwd"@en "rwd"@en "awd"@en].
+    rdfs:range [owl:oneOf ("unknown"@en "fwd"@en "rwd"@en "awd"@en)].
 
 vss:ObservableSignal a rdfs:Class, owl:Class;
     rdfs:subClassOf sosa:ObservableProperty;
