@@ -22,7 +22,14 @@ vss:hasValue a owl:DatatypeProperty, owl:FunctionalProperty;
 
 vss:attribute a owl:ObjectProperty;
     rdfs:label "Attribute"@en;
-    rdfs:comment "Attribute signals that do not change during the power cycle of a vehicle."@en.
+    rdfs:comment "Attribute signals that do not change during the power cycle of a vehicle."@en;
+    rdfs:domain vss:Branch.
+
+vss:gearCount a owl:ObjectProperty;
+    rdfs:label "GearCount"@en;
+    rdfs:comment "Number of forward gears in the transmission. -1 = CVT."@en;
+    rdfs:subPropertyOf vss:attribute;
+    rdfs:domain vss:Transmission.
 
 vss:ObservableSignal a rdfs:Class, owl:Class;
     rdfs:subClassOf sosa:ObservableProperty;
