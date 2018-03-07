@@ -29,7 +29,15 @@ vss:gearCount a owl:ObjectProperty;
     rdfs:label "GearCount"@en;
     rdfs:comment "Number of forward gears in the transmission. -1 = CVT."@en;
     rdfs:subPropertyOf vss:attribute;
-    rdfs:domain vss:Transmission.
+    rdfs:domain vss:Transmission;
+    rdfs:range xsd:unsignedByte.
+
+vss:driveType a owl:ObjectProperty;
+    rdfs:label "DriveType"@en;
+    rdfs:comment "Drive type."@en;
+    rdfs:subPropertyOf vss:attribute;
+    rdfs:domain vss:Transmission;
+    rdfs:range [owl:oneOf "unknown"@en "fwd"@en "rwd"@en "awd"@en].
 
 vss:ObservableSignal a rdfs:Class, owl:Class;
     rdfs:subClassOf sosa:ObservableProperty;
