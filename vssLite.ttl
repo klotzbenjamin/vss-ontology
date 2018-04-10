@@ -52,6 +52,17 @@ vss:ActuableSignal a rdfs:Class, owl:Class;
 vss:hasSignal a owl:ObjectProperty;
     rdfs:label "has signal"@en.
 
+vss:Vehicle a rdfs:Class, owl:Class;
+  rdfs:subClassOf vss:Branch;
+  rdfs:label "Vehicle"@en;
+  rdfs:comment "Signal/Attribute.Vehicle : High-vele vehicle data"@en;
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:onProperty vss:hasSignal;
+    owl:allValuesFrom [owl:unionOf vss:AccumulatedIdleTime, vss:CurrentTravelledDistance, vss:AccumulatedTravelledDistance, vss:AccumulatedDriveTime, 
+    vss:AccumulatedIgnitionOffTime, vss:AccumulatedIgnitionOnTime, vss:AmbientAirTemperature, vss:VehicleSpeed].#TODO checknames
+  ].
+
 vss:Drivetrain a rdfs:Class, owl:Class;
     rdfs:subClassOf vss:Branch;
     rdfs:subClassOf [
