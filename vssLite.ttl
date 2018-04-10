@@ -5,8 +5,8 @@
 @prefix xhv: <http://www.w3.org/1999/xhtml/vocab#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix sosa: <http://www.w3.org/ns/sosa/>.
-@prefix qudt-1-1: <http://www.qudt.org/1.1/schema/qudt#> .
-@prefix qudt-unit-1-1: <http://www.qudt.org/1.1/vocab/unit#> .
+@prefix qudt: <http://www.qudt.org/1.1/schema/qudt#> .
+@prefix vocab: <http://www.qudt.org/1.1/vocab/unit#> .
 @prefix vss: <https://raw.githubusercontent.com/klotzbenjamin/VSSontology/master/vssLite.ttl#> .
 
 <https://raw.githubusercontent.com/klotzbenjamin/VSSontology/master/vssLite.ttl> a owl:Ontology.
@@ -113,8 +113,8 @@ vss:TravelledDistance a rdfs:Class, owl:Class;
     ],
     [
         a owl:Restriction;
-        owl:onProperty qudt-1-1:unit;
-        owl:allValuesFrom qudt-unit-1-1:Kilometer.
+        owl:onProperty qudt:unit;
+        owl:allValuesFrom vocab:Kilometer.
     ].
 
 vss:VehicleSpeed a rdfs:Class, owl:Class;
@@ -128,8 +128,8 @@ vss:VehicleSpeed a rdfs:Class, owl:Class;
     ],
     [
         a owl:Restriction;
-        owl:onProperty qudt-1-1:unit;
-        owl:allValuesFrom qudt-unit-1-1:KilometerPerHour.
+        owl:onProperty qudt:unit;
+        owl:allValuesFrom vocab:KilometerPerHour.
     ].
 
 vss:SteeringWheelAngle a rdfs:Class, owl:Class;
@@ -143,9 +143,74 @@ vss:SteeringWheelAngle a rdfs:Class, owl:Class;
     ],
     [
         a owl:Restriction;
-        owl:onProperty qudt-1-1:unit;
-        owl:allValuesFrom qudt-unit-1-1:DegreeAngle.
+        owl:onProperty qudt:unit;
+        owl:allValuesFrom vocab:DegreeAngle.
     ].
+
+vss:LateralAcceleration a rdfs:Class, owl:Class;
+	rdfs:subClassOf vss:ObservableSignal;
+	rdfs:label "Lateral"@en;
+	rdfs:comment "Signal.Vehicle.Acceleration.Lateral : Vehicle acceleration in Y (lateral acceleration)."@en;
+	rdfs:subClassOf [
+		a owl:Restriction;
+		owl:onProperty sosa:isObservedBy;
+		owl:allValuesFrom vss:Accelerometer.
+	];
+	rdfs:subClassOf [
+		a owl:Restriction;
+		owl:onProperty qudt:unit;
+		owl:allValuesFrom vocab:MeterPerSecondSquared.
+	].
+
+vss:LongitudinalAcceleration a rdfs:Class, owl:Class;
+	rdfs:subClassOf vss:ObservableSignal;
+	rdfs:label "Longitudinal"@en;
+	rdfs:comment "Signal.Vehicle.Acceleration.Longitudinal : Vehicle acceleration in X (longitudinal acceleration)."@en;
+	rdfs:subClassOf [
+		a owl:Restriction;
+		owl:onProperty sosa:isObservedBy;
+		owl:allValuesFrom vss:Accelerometer.
+	];
+	rdfs:subClassOf [
+		a owl:Restriction;
+		owl:onProperty qudt:unit;
+		owl:allValuesFrom vocab:MeterPerSecondSquared.
+	].
+
+vss:CurrentGear a rdfs:Class, owl:Class;
+	rdfs:subClassOf vss:ObservableSignal, vss:ActuableSignal;
+	rdfs:label "Gear"@en;
+	rdfs:comment "Signal.Drivetrain.Transmission.Gear : Current gear. 0=Neutral. -1=Reverse"@en;
+	rdfs:subClassOf [
+		a owl:Restriction;
+		owl:onProperty sosa:isObservedBy;
+		owl:allValuesFrom vss:Gearbox.
+	];
+	rdfs:subClassOf [
+		a owl:Restriction;
+		owl:onProperty sosa:isActuatedBy;
+		owl:allValuesFrom vss:Gearbox.
+	];
+	rdfs:subClassOf [
+		a owl:Restriction;
+		owl:onProperty qudt:unit;
+		owl:allValuesFrom vocab:Unitless.
+	].
+
+vss:AmbientAirTemperature a rdfs:Class, owl:Class;
+	rdfs:subClassOf vss:ObservableSignal;
+	rdfs:label "AmbientAirTemperature"@en;
+	rdfs:comment "Signal.Vehicle.AmbientAirTemperature : Ambient air temperature"@en;
+	rdfs:subClassOf [
+		a owl:Restriction;
+		owl:onProperty sosa:isObservedBy;
+		owl:allValuesFrom vss:Thermometer.
+	];
+	rdfs:subClassOf [
+		a owl:Restriction;
+		owl:onProperty qudt:unit;
+		owl:allValuesFrom vocab:DegreeCelcius.
+	].
 
 vss:Odometer a rdfs:Class, owl:Class;
     rdfs:subClassOf sosa:Sensor.
@@ -154,4 +219,13 @@ vss:Speedometer a rdfs:Class, owl:Class;
     rdfs:subClassOf sosa:Sensor.
 
 vss:SteeringAngleSensor a rdfs:Class, owl:Class;
+    rdfs:subClassOf sosa:Sensor.
+
+vss:Accelerometer a rdfs:Class, owl:Class;
+    rdfs:subClassOf sosa:Sensor.
+
+vss:Gearbox a rdfs:Class, owl:Class;
+    rdfs:subClassOf sosa:Sensor,sosa:Actuator.
+
+vss:Thermometer a rdfs:Class, owl:Class;
     rdfs:subClassOf sosa:Sensor.
