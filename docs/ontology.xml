@@ -2,11 +2,19 @@
 <rdf:RDF xmlns="https://vss.org#"
      xml:base="https://vss.org"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:terms="http://purl.org/dc/terms/"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    <owl:Ontology rdf:about="https://vss.org"/>
+    <owl:Ontology rdf:about="https://vss.org#">
+        <terms:abstract rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+  This ontology describes the attributes, branches and signals defined in GENIVI&apos;s Vehicle Signal Specification.
+   </terms:abstract>
+        <terms:date rdf:datatype="http://www.w3.org/2001/XMLSchema#string">$Date: 2018/05/29 $</terms:date>
+        <terms:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">VSSo</terms:title>
+        <rdfs:seeAlso rdf:resource="https://github.com/GENIVI/vehicle_signal_specification"/>
+    </owl:Ontology>
     
 
 
