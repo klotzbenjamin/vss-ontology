@@ -1,0 +1,442 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix rdfa: <http://www.w3.org/ns/rdfa#>.
+@prefix xhv: <http://www.w3.org/1999/xhtml/vocab#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix sosa: <http://www.w3.org/ns/sosa/>.
+@prefix qudt: <http://qudt.org/schema/qudt/>.
+@prefix vss: <http://automotive.eurecom.fr/vsso#> .
+@prefix cdt: <http://w3id.org/lindt/custom_datatypes#> .
+
+<http://automotive.eurecom.fr/vsso#> a owl:Ontology.
+
+vss:Branch a rdfs:Class, owl:Class;
+    rdfs:label "Branch"@en.
+
+vss:partOf a owl:ObjectProperty, owl:TransitiveProperty;
+    rdfs:label "part of"@en.
+
+vss:hasValue a owl:DatatypeProperty, owl:FunctionalProperty;
+    rdfs:label "has value"@en.
+
+vss:attribute a owl:ObjectProperty;
+    rdfs:label "Attribute"@en;
+    rdfs:comment "Attribute signals that do not change during the power cycle of a vehicle."@en;
+    rdfs:domain vss:Branch.
+
+vss:gearCount a owl:ObjectProperty;
+    rdfs:label "GearCount"@en;
+    rdfs:comment "Number of forward gears in the transmission. -1 = CVT."@en;
+    rdfs:subPropertyOf vss:attribute;
+    rdfs:domain vss:Transmission;
+    rdfs:range xsd:unsignedByte.
+
+vss:driveType a owl:ObjectProperty;
+    rdfs:label "DriveType"@en;
+    rdfs:comment "Drive type."@en;
+    rdfs:subPropertyOf vss:attribute;
+    rdfs:domain vss:Transmission;
+    rdfs:range [owl:oneOf ("unknown"@en "fwd"@en "rwd"@en "awd"@en)].
+
+vss:ObservableSignal a rdfs:Class, owl:Class;
+    rdfs:subClassOf sosa:ObservableProperty;
+    rdfs:label "Observable signal"@en;
+    rdfs:comment "All observable signals that can dynamically be updated by the vehicle"@en.
+
+vss:ActuableSignal a rdfs:Class, owl:Class;
+    rdfs:subClassOf sosa:ActuableProperty;
+    rdfs:label "Actuable signal"@en;
+    rdfs:comment "All actuable signals that can dynamically be updated by the vehicle"@en.
+
+vss:hasSignal a owl:ObjectProperty;
+    rdfs:label "has signal"@en.
+
+vss:Vehicle a rdfs:Class, owl:Class;
+  rdfs:subClassOf vss:Branch;
+  rdfs:label "Vehicle"@en;
+  rdfs:comment "Signal/Attribute.Vehicle : High-vele vehicle data"@en;
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:onProperty vss:hasSignal;
+    owl:allValuesFrom [owl:unionOf(vss:AccumulatedIdleTime vss:CurrentTravelledDistance vss:AccumulatedTravelledDistance vss:AccumulatedDriveTime 
+    vss:AccumulatedIgnitionOffTime vss:AccumulatedIgnitionOnTime vss:AmbientAirTemperature vss:VehicleSpeed)]
+  ].
+
+vss:VehicleIdentification a rdfs:Class, owl:Class;
+  rdfs:subClassOf vss:Branch;
+  rdfs:label "VehicleIdentification"@en;
+  rdfs:comment "Attribute.Vehicle.VehicleIdentification : Attributes that identify a vehicle"@en;
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:onProperty vss:partOf;
+    owl:allValuesFrom vss:Vehicle
+  ].
+
+vss:vin a owl:DatatypeProperty;
+        rdfs:subPropertyOf vss:attribute;
+        rdfs:label "VIN"@en;
+        rdfs:comment "Attribute.Vehicle.VehicleIdentification.VIN : 17-character Vehicle Identification Number (VIN) as defined by ISO 3779"@en;
+        rdfs:domain vss:VehicleIdentification;
+        rdfs:range xsd:string.
+
+
+vss:brand a owl:DatatypeProperty;
+        rdfs:subPropertyOf vss:attribute;
+        rdfs:label "Brand"@en;
+        rdfs:comment "Attribute.Vehicle.VehicleIdentification.Brand : Vehicle brand or manufacturer"@en;
+        rdfs:domain vss:VehicleIdentification;
+        rdfs:range xsd:string. 
+
+vss:Drivetrain a rdfs:Class, owl:Class;
+    rdfs:subClassOf vss:Branch;
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty vss:partOf;
+        owl:allValuesFrom vss:Vehicle
+    ];
+    rdfs:label "Drivetrain"@en;
+    rdfs:comment "Drivetrain. All body components"@en.
+
+vss:Chassis a rdfs:Class, owl:Class;
+    rdfs:subClassOf vss:Branch;
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty vss:partOf;
+        owl:allValuesFrom vss:Vehicle
+    ];
+    rdfs:label "Chassis"@en;
+    rdfs:comment "Chassis. All signals concerning steering, suspension, wheels, and brakes."@en.
+
+vss:length a owl:DatatypeProperty;
+        rdfs:subPropertyOf vss:attribute;
+        rdfs:label "Length"@en;
+        rdfs:comment "Attribute.Chassis.Length : Overall vehicle length, in mm."@en;
+        rdfs:domain vss:Chassis;
+        rdfs:range cdt:length.
+
+vss:width a owl:DatatypeProperty;
+        rdfs:subPropertyOf vss:attribute;
+        rdfs:label "Width"@en;
+        rdfs:comment "Attribute.Chassis.Width : Overall vehicle width, in mm."@en;
+        rdfs:domain vss:Chassis;
+        rdfs:range cdt:length.
+
+vss:grossWeight a owl:DatatypeProperty;
+        rdfs:subPropertyOf vss:attribute;
+        rdfs:label "GrossWeight"@en;
+        rdfs:comment "Attribute.Chassis.GrossWeight : Curb weight of vehicle, including all liquids and full tank of fuel and full load of cargo and passengers."@en;
+        rdfs:domain vss:Chassis;
+        rdfs:range cdt:mass.
+
+vss:Transmission a rdfs:Class, owl:Class;
+    rdfs:subClassOf vss:Branch;
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty vss:partOf;
+        owl:allValuesFrom vss:Drivetrain
+    ];
+    rdfs:label "Transmission"@en;
+    rdfs:comment "Drivetrain.Transmission. Transmission-specific data, stopping at the drive shafts."@en;
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty vss:hasSignal;
+        owl:allValuesFrom [owl:unionOf(vss:TravelledDistance vss:VehicleSpeed)]
+    ] .
+
+vss:SteeringWheel a rdfs:Class, owl:Class;
+    rdfs:subClassOf vss:Branch;
+    rdfs:label "SteeringWheel"@en;
+    rdfs:comment "Chassis.SteeringWheel. Steering wheel signals."@en;
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty vss:partOf;
+        owl:allValuesFrom vss:Chassis
+    ];
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty vss:hasSignal;
+        owl:allValuesFrom vss:SteeringWheelAngle
+    ].
+
+vss:Cabin a rdfs:Class, owl:Class;
+  rdfs:subClassOf vss:Branch;
+  rdfs:label "Cabin"@en;
+  rdfs:comment "Signal/Attribute.Cabin : All in-cabin components"@en;
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:onProperty vss:partOf;
+    owl:allValuesFrom vss:Vehicle
+  ].
+
+vss:Seat a rdfs:Class, owl:Class;
+  rdfs:subClassOf vss:Branch;
+  rdfs:label "Seat"@en;
+  rdfs:comment "Signal/Attribute.Cabin.Seat : All seats."@en;
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:onProperty vss:partOf;
+    owl:allValuesFrom vss:Cabin
+  ];
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:onProperty vss:hasSignal;
+    owl:allValuesFrom [owl:unionOf vss:SeatRecline, vss:SeatHasPassenger, vss:SeatHeating, vss:IsBelted, vss:SeatPosition, vss:SeatMassage]
+  ];
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:onProperty vss:position;
+    owl:allValuesFrom [owl:oneOf("front_left"@en "front_right"@en "rear_left"@en "rear_right"@en)]
+  ].
+
+vss:driverPostion a owl:DatatypeProperty;
+        rdfs:subPropertyOf vss:attribute;
+        rdfs:label "DriverPostion"@en;
+        rdfs:comment "Attribute.Cabin.Seat.DriverPostion : The position of the driver seat in row 1. (1-5)"@en;
+        rdfs:domain vss:Seat;
+        rdfs:range xsd:int.
+
+vss:doorCount a owl:DatatypeProperty;
+        rdfs:subPropertyOf vss:attribute;
+        rdfs:label "Count"@en;
+        rdfs:comment "Attribute.Cabin.Door.Count : Number of doors in vehicle"@en;
+        rdfs:domain vss:Cabin;
+        rdfs:range xsd:int.
+
+vss:Door a rdfs:Class, owl:Class;
+  rdfs:subClassOf vss:Branch;
+  rdfs:label "Door"@en;
+  rdfs:comment "Signal/Attribute.Cabin.Door : All doors"@en;
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:onProperty vss:partOf;
+    owl:allValuesFrom vss:Cabin
+  ];
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:onProperty vss:hasSignal;
+    owl:allValuesFrom [owl:unionOf vss:IsChildLockActive, vss:DoorIsLocked, vss:DoorIsOpen]
+  ];
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:onProperty vss:position;
+    owl:allValuesFrom [owl:oneOf ("front_left"@en "front_right"@en "rear_left"@en "rear_right"@en "all"@en)]
+  ].
+
+vss:Wheel a rdfs:Class, owl:Class;
+  rdfs:subClassOf vss:Branch;
+  rdfs:label "Wheel"@en;
+  rdfs:comment "Signal/Attribute.Chassis.Axle.RowX.Wheel : wheel signals"@en;
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:onProperty vss:partOf;
+    owl:allValuesFrom vss:Axle
+  ];
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:onProperty vss:position;
+    owl:allValuesFrom [owl:oneOf("front_left"@en "front_right"@en "rear_left"@en "rear_right"@en)]
+  ].
+
+vss:Axle a rdfs:Class, owl:Class;
+  rdfs:subClassOf vss:Branch;
+  rdfs:label "Axle"@en;
+  rdfs:comment "Signal/Attribute.Chassis.Axle : Axle signals"@en;
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:onProperty vss:partOf;
+    owl:allValuesFrom vss:Chassis
+  ].
+
+vss:Engine a rdfs:Class, owl:Class;
+  rdfs:subClassOf vss:Branch;
+  rdfs:label "InternalCombustionEngine"@en;
+  rdfs:comment "Signal/Attribute.Drivetrain.InternalCombustionEngine : Engine-specific attributes"@en;
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:onProperty vss:partOf;
+    owl:allValuesFrom vss:Drivetrain
+  ];
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:onProperty vss:hasSignal;
+    owl:allValuesFrom [owl:unionOf vss:EOP, vss:MAP, vss:CurrentPower, vss:EOT, vss:Torque, vss:AmbientAirTemperature, vss:ECT, 
+    vss:TCS, vss:MAF, vss:RotationSpeed]#TODO: TCS is a branch!
+  ].
+
+vss:maxPower a owl:DatatypeProperty;
+        rdfs:subPropertyOf vss:attribute;
+        rdfs:label "MaxPower"@en;
+        rdfs:comment "Attribute.Drivetrain.InternalCombustionEngine.MaxPower : Peak power, in kilowatts, that engine can generate."@en;
+        rdfs:domain vss:Engine;
+        rdfs:range cdt:power.
+
+vss:TravelledDistance a rdfs:Class, owl:Class;
+    rdfs:subClassOf vss:ObservableSignal;
+    rdfs:label "TravelledDistance"@en;
+    rdfs:comment "Signal.Drivetrain.Transmission.TravelledDistance. Odometer reading."@en;
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty sosa:isObservedBy;
+        owl:allValuesFrom vss:Odometer
+    ];
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty qudt:unit;
+        owl:allValuesFrom qudt:LengthUnit
+    ].
+
+vss:VehicleSpeed a rdfs:Class, owl:Class;
+    rdfs:subClassOf vss:ObservableSignal;
+    rdfs:label "Speed"@en;
+    rdfs:comment "Signal.Drivetrain.Transmission.VehicleSpeed. Vehicle speed, as sensed by the gearbox."@en;
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty sosa:isObservedBy;
+        owl:allValuesFrom vss:Speedometer
+    ];
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty qudt:unit;
+        owl:allValuesFrom qudt:LinearVelocityUnit
+    ].
+
+vss:SteeringWheelAngle a rdfs:Class, owl:Class;
+    rdfs:subClassOf vss:ObservableSignal;
+    rdfs:label "SteeringWheelAngle"@en;
+    rdfs:comment "Signal.Chassis.SteeringWheel.Angle. Steering wheel angle. Positive = degrees to the left. Negative = degrees to the right."@en;
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty sosa:isObservedBy;
+        owl:allValuesFrom vss:SteeringAngleSensor
+    ];
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty qudt:unit;
+        owl:allValuesFrom qudt:AngleUnit
+    ].
+
+vss:LateralAcceleration a rdfs:Class, owl:Class;
+    rdfs:subClassOf vss:ObservableSignal;
+    rdfs:label "Lateral"@en;
+    rdfs:comment "Signal.Vehicle.Acceleration.Lateral : Vehicle acceleration in Y (lateral acceleration)."@en;
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty sosa:isObservedBy;
+        owl:allValuesFrom vss:Accelerometer
+    ];
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty qudt:unit;
+        owl:allValuesFrom qudt:LinearAccelerationUnit
+    ].
+
+vss:LongitudinalAcceleration a rdfs:Class, owl:Class;
+    rdfs:subClassOf vss:ObservableSignal;
+    rdfs:label "Longitudinal"@en;
+    rdfs:comment "Signal.Vehicle.Acceleration.Longitudinal : Vehicle acceleration in X (longitudinal acceleration)."@en;
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty sosa:isObservedBy;
+        owl:allValuesFrom vss:Accelerometer
+    ];
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty qudt:unit;
+        owl:allValuesFrom qudt:LinearAccelerationUnit
+    ].
+
+vss:CurrentGear a rdfs:Class, owl:Class;
+    rdfs:subClassOf vss:ObservableSignal, vss:ActuableSignal;
+    rdfs:label "Gear"@en;
+    rdfs:comment "Signal.Drivetrain.Transmission.Gear : Current gear. 0=Neutral. -1=Reverse"@en;
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty sosa:isObservedBy;
+        owl:allValuesFrom vss:Gearbox
+    ];
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty sosa:isActuatedBy;
+        owl:allValuesFrom vss:Gearbox
+    ];
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty qudt:unit;
+        owl:allValuesFrom qudt:DimensionlessUnit
+    ].
+
+vss:AmbientAirTemperature a rdfs:Class, owl:Class;
+    rdfs:subClassOf vss:ObservableSignal;
+    rdfs:label "AmbientAirTemperature"@en;
+    rdfs:comment "Signal.Vehicle.AmbientAirTemperature : Ambient air temperature"@en;
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty sosa:isObservedBy;
+        owl:allValuesFrom vss:Thermometer
+    ];
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty qudt:unit;
+        owl:allValuesFrom qudt:TemperatureUnit
+    ].
+
+vss:DoorIsLocked a rdfs:Class, owl:Class;
+    rdfs:subClassOf vss:ObservableSignal, vss:ActuableSignal;
+    rdfs:label "IsLocked"@en;
+    rdfs:comment "Signal.Cabin.Door.RowX.Left/Right.IsLocked : Is door locked or unlocked. True = Locked. False = Unlocked."@en;
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty sosa:isObservedBy;
+        owl:allValuesFrom vss:DoorLock
+    ];
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty sosa:isActuatedBy;
+        owl:allValuesFrom vss:DoorLock
+    ];
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty qudt:unit;
+        owl:allValuesFrom qudt:DimensionlessUnit
+    ].
+
+vss:TirePressure a rdfs:Class, owl:Class;
+    rdfs:subClassOf vss:ObservableSignal;
+    rdfs:label "Pressure"@en;
+    rdfs:comment "Signal.Chassis.Axle.RowX.Wheel.Left/Right.Tire.Pressure : Tire pressure in kilo-Pascal"@en;
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty sosa:isObservedBy;
+        owl:allValuesFrom vss:TirePressureMonitoringSystem
+    ];
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty qudt:unit;
+        owl:allValuesFrom qudt:PressureOrStressUnit
+    ].
+
+vss:vin a owl:DatatypeProperty;
+        rdfs:subPropertyOf vss:attribute;
+        rdfs:label "VIN"@en;
+        rdfs:comment "Attribute.Vehicle.VehicleIdentification.VIN : 17-character Vehicle Identification Number (VIN) as defined by ISO 3779"@en;
+        rdfs:domain vss:VehicleIdentification;
+        rdfs:range xsd:string.
+
+vss:Odometer a rdfs:Class, owl:Class;
+    rdfs:subClassOf sosa:Sensor.
+
+vss:Speedometer a rdfs:Class, owl:Class;
+    rdfs:subClassOf sosa:Sensor.
+
+vss:SteeringAngleSensor a rdfs:Class, owl:Class;
+    rdfs:subClassOf sosa:Sensor.
+
+vss:Accelerometer a rdfs:Class, owl:Class;
+    rdfs:subClassOf sosa:Sensor.
+
+vss:Gearbox a rdfs:Class, owl:Class;
+    rdfs:subClassOf sosa:Sensor,sosa:Actuator.
+
+vss:Thermometer a rdfs:Class, owl:Class;
+    rdfs:subClassOf sosa:Sensor.
