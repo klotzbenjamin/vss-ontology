@@ -1,4 +1,8 @@
-<https://vss.org> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<https://vss.org#> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<https://vss.org#> <http://purl.org/dc/terms/abstract> "\n  This ontology describes the attributes, branches and signals defined in GENIVI's Vehicle Signal Specification.\n   " .
+<https://vss.org#> <http://purl.org/dc/terms/date> "$Date: 2018/05/29 $" .
+<https://vss.org#> <http://purl.org/dc/terms/title> "VSSo" .
+<https://vss.org#> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <https://github.com/GENIVI/vehicle_signal_specification> .
 # 
 # 
 # #################################################################
