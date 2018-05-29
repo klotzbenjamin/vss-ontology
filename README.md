@@ -1,5 +1,18 @@
 # VSSo: as Vehicle Signals and Attribute Ontology
-This folder contains the following...
+This folder contains the research project carried out around the development, extension and usage of VSSo. 
+VSSo is an ontology created from GENIVI's Vehicle Signal Specification and the SOSA patterns for observations and actuations.
+
+## Folder structure
+Each project has its own folder. The current structure is as follows
+### [https://github.com/klotzbenjamin/vss-ontology/tree/master/docs docs]
+This contains the html documentation about VSSo, automatically generated using WIDOCO.
+The rendered page is available at https://klotzbenjamin.github.io/vss-ontology/
+### [https://github.com/klotzbenjamin/vss-ontology/tree/master/rdf-generation rdf-generation]
+This contains the script for extending VSSo according to the priciple of private branches in the vehicle signal specification.
+### [https://github.com/klotzbenjamin/vss-ontology/tree/master/trajectory-annotation trajectory-annotation]
+This contains a script for generating semantic trajectories with VSSo, SOSA and STEP.
+A public demonstrator is available at http://automotive.eurecom.fr/trajectory
+
 
 ## Setup
 ### Get the vehicle signal specification
