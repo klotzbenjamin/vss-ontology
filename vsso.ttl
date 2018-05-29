@@ -5069,7 +5069,7 @@ vss:doorCount a owl:DatatypeProperty;
         rdfs:range xsd:int.
 
 
-vss:SteeringWheelSide a owl:DatatypeProperty;
+vss:steeringWheelSide a owl:DatatypeProperty;
         rdfs:subPropertyOf vss:attribute;
         rdfs:label "Position"@en;
         rdfs:comment "Attribute.Cabin.SteeringWheel.Position : Position of the steering wheel inside the cabin"@en;
