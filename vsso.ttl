@@ -6,10 +6,21 @@
 @prefix qudt: <http://qudt.org/schema/qudt/>.
 @prefix vss: <https://vss.org#> .
 @prefix cdt: <http://w3id.org/lindt/custom_datatypes#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+
+# baseURI: http://automotive.eurecom.fr/vsso#
+# prefix: vss
+
+vss: a owl:Ontology ;
+     dc:title "VSSo" ;
+     dc:abstract """
+  This ontology describes the attributes, branches and signals defined in GENIVI's Vehicle Signal Specification.
+   """ ;
+     rdfs:seeAlso   <https://github.com/GENIVI/vehicle_signal_specification>;
+     dc:date "$Date: 2018/05/29 $" .
 
 #TODO: check values in vss:position datatypes
-
-<https://vss.org> a owl:Ontology.
 
 vss:Branch a rdfs:Class, owl:Class;
   rdfs:label "Branch"@en;
