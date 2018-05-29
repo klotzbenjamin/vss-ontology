@@ -4,7 +4,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix sosa: <http://www.w3.org/ns/sosa/>.
 @prefix qudt: <http://qudt.org/schema/qudt/>.
-@prefix vss: <http://autootive.eurecom.fr/vsso#> .
+@prefix vss: <http://automotive.eurecom.fr/vsso#> .
 @prefix cdt: <http://w3id.org/lindt/custom_datatypes#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
@@ -14,7 +14,7 @@
 vss: rdf:type owl:Ontology ;
   owl:imports sosa: ;
   dct:title "VSSo";
-  vann:preferredNamespaceUri "http://automotive.eurecom.fr/vsso#" ;
+  vann:preferredNamespaceUri "http://automotive.eurecom.fr/vsso" ;
   dct:issued "2018-04-23"^^xsd:date ;
   dc:description "This ontology describes the car's attributes, branches and signals defined in GENIVI's Vehicle Signal Specification." ;
   # dct:license TODO ;
