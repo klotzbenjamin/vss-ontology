@@ -4,21 +4,24 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix sosa: <http://www.w3.org/ns/sosa/>.
 @prefix qudt: <http://qudt.org/schema/qudt/>.
-@prefix vss: <https://vss.org#> .
+@prefix vss: <http://autootive.eurecom.fr/vsso#> .
 @prefix cdt: <http://w3id.org/lindt/custom_datatypes#> .
-@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dct: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix vann: <http://purl.org/vocab/vann/> .
 
-# baseURI: http://automotive.eurecom.fr/vsso#
-# prefix: vss
-
-vss: a owl:Ontology ;
-     dc:title "VSSo" ;
-     dc:abstract """
-  This ontology describes the attributes, branches and signals defined in GENIVI's Vehicle Signal Specification.
-   """ ;
-     rdfs:seeAlso   <https://github.com/GENIVI/vehicle_signal_specification>;
-     dc:date "$Date: 2018/05/29 $" .
+vss: rdf:type owl:Ontology ;
+  owl:imports sosa: ;
+  dct:title "VSSo";
+  vann:preferredNamespaceUri "http://automotive.eurecom.fr/vsso#" ;
+  dct:issued "2018-04-23"^^xsd:date ;
+  dc:description "This ontology describes the car's attributes, branches and signals defined in GENIVI's Vehicle Signal Specification." ;
+  # dct:license TODO ;
+  dct:modified "2018-06-01" ;
+  dct:created "2018-01-10"^^xsd:date ;
+  #dct:creator TODO ;
+  owl:versionInfo """v0.1 01/06/2018 - Most VSS concepts are mapped"""@en ;
+  vann:preferredNamespacePrefix "vss" .
 
 #TODO: check values in vss:position datatypes
 
