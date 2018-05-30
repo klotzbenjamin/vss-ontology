@@ -25,68 +25,59 @@ WHERE { ?attribute  rdfs:subPropertyOf  vss:attribute.
 ```
 #### How many attributes does my car have?
 ```SPARQL
-SELECT ?attribute (count(distinct ?attribute) as ?count)
+SELECT (count(distinct ?attribute) as ?count)
 WHERE {?attribute  rdfs:subPropertyOf  vss:attribute.}
-GROUP BY ?attribute
+GROUP BY ?x
 ```
 #### What is the model of this car?
 ```SPARQL
 SELECT ?model
-WHERE { ?attribute  a  vss:model.
-?branch ?attribute ?model.}
+WHERE { ?branch vss:model ?model.}
 ```
 #### What is the brand of my car?
 ```SPARQL
 SELECT ?brand
-WHERE { ?attribute  a  vss:brand.
-?branch ?attribute ?brand.}
+WHERE { ?branch vss:brand ?brand.}
 ```
 #### What is the VIN of my car?
 ```SPARQL
 SELECT ?vin
-WHERE { ?attribute  a  vss:vin.
-?branch ?attribute ?vin.}
+WHERE { ?branch vss:vin ?vin.}
 ```
 #### How old is my car?
 ```SPARQL
 SELECT ?age
-WHERE { ?attribute  a  vss:year.
-?branch ?attribute ?year.
+WHERE { ?branch vss:year ?year.
 BIND((2018-?year) AS ?age)}
 ```
 #### What are the dimensions of my car?
 ```SPARQL
 SELECT ?length ?width ?height
-WHERE { ?attribute  a  vss:length.
-?branch ?attribute ?length.
-?attribute  a  vss:width.
-?branch ?attribute ?width.
-?attribute  a  vss:height.
-?branch ?attribute ?height.}
+WHERE { ?branch vss:length ?length;
+	vss:width ?width;
+	vss:height ?height.}
 ```
 #### What type of fuel does my car need?
 ```SPARQL
 SELECT ?fueltype
-WHERE { ?attribute  a  vss:fuelType.
-?branch ?attribute ?fuelType.}
+WHERE {?branch vss:fuelType ?fuelType.}
 ```
 #### What type of transmission does my car have?
 ```SPARQL
 SELECT ?type
-WHERE { ?attribute  a  vss:transmissionType.
-?branch ?attribute ?type.}
+WHERE { ?branch vss:transmissionType ?type.}
 ```
 #### What are the characteristics of my engine?
 ```SPARQL
 SELECT ?engine ?attribute ?value
-WHERE { ?attribute  a  vss:attribute.
-?engine a vss:InternalCOmbustionEngine;
+WHERE { ?attribute  rdfs:subPropertyOf  vss:attribute.
+?engine a vss:InternalCombustionEngine;
   ?attribute ?value.}
 ```
 #### How many doors does my car contain?
 ```SPARQL
 SELECT ?attributes (count(distinct ?attributes) as ?count)
-?attribute  rdfs:subPropertyOf  vss:attribute.
+WHERE{?attribute  rdfs:subPropertyOf  vss:attribute.
 ?door a vss:Door.
 {?door ?attribute ?value}
 UNION
