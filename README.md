@@ -117,30 +117,63 @@ WHERE { ?attribute  a  vss:steeringWheelSide.
 ### Static Signals
 #### Is there a signal measuring the steering wheel angle?
 ```SPARQL
+SELECT ?signal
+WHERE { ?signal a vss:SteeringWheelAngle.}
 ```
 #### Which signals are controllable?
 ```SPARQL
+SELECT ?signal ?actuator
+WHERE { ?actuator  vss:consumes ?signal.
+  ?signal a vss:ActuatableSignal.}
 ```
 #### Which signals are both observable and actuable?
 ```SPARQL
+SELECT ?signal ?sensor ?actuator
+WHERE { ?actuator  vss:consumes ?signal.
+  ?sensor sosa:observes ?signal.
+  ?signal a vss:ActuatableSignal, vss:ObservableSignal.}
 ```
 #### How many sensors does my car contain?
 ```SPARQL
+SELECT ?sensor (count(distinct ?sensor) as ?count)
+WHERE { ?sensor sosa:observes ?signal.
+  ?signal a vss:ObservableSignal.}
 ```
 #### How many different speedometers does my car contain?
 ```SPARQL
+SELECT ?sensor (count(distinct ?sensor) as ?count)
+WHERE { ?sensor a vss:Speedometer.}
 ```
 #### In which part of my car is produced the signal vss:LongitudinalAcceleration?
 ```SPARQL
+SELECT ?branch
+WHERE { ?branch  a  vss:Branch.
+?branch vss:hasSignal vss:LongitudinalAcceleration.
+FILTER NOT EXIST{?x vss:partOf ?p}
+}
 ```
 #### Which signals measure a temperature, and in which part of my car?
 ```SPARQL
+SELECT ?signal ?branch
+WHERE { ?branch  a  vss:Branch.
+?branch vss:hasSignal ?signal.
+?signal a vss:AmbientAirTemperature.
+FILTER NOT EXIST{?x vss:partOf ?p}
+}
 ```
 #### What unit type does the signal vss:VehicleYaw use?
 ```SPARQL
+SELECT ?unitsystem
+WHERE { ?yaw  a vss:VehicleYaw;
+qudt:unit ?unitsystem.}
 ```
 #### What are the characteristics of the sensor producing the signal “TravelledDistance” in the OBD branch?
 ```SPARQL
+SELECT ?sensor ?p ?o
+WHERE { ?sensor  a ?sensor;
+  vss:observes ?signal;
+  ?p ?o.
+?signal a vss:TravelledDistance.}
 ```
 #### What are the maximum values allowed for all signals from car part “Vehicle”?
 ```SPARQL
@@ -149,12 +182,41 @@ WHERE { ?attribute  a  vss:steeringWheelSide.
 ### Dynamic signals
 #### What is the current gear?
 ```SPARQL
+SELECT ?signal ?result ?time
+WHERE {?signal a vss:CurrentGear.
+?obs a sosa:Observation;
+	sosa:observedProperty ?signal;
+	sosa:hasSimpleResult ?result;
+	sosa:phenomenonTime ?time.
+}
+ORDER BY DESC(?time)
+LIMIT 1
 ```
 #### What are the values of all signals representing the speed of my car?
 ```SPARQL
+SELECT ?signal ?result ?time
+WHERE {?signal a vss:VehicleSpeed.
+?obs a sosa:Observation;
+	sosa:observedProperty ?signal;
+	sosa:hasSimpleResult ?result;
+	sosa:phenomenonTime ?time.
+}
+ORDER BY DESC(?time)
 ```
 #### Which windows are open?
 ```SPARQL
+SELECT ?position
+WHERE {?windowPosition a vss:WindowPosition.
+?window vss:hasSignal ?windowPosition.
+?obs a sosa:Observation;
+	sosa:observedProperty ?windowPosition;
+	sosa:hasResult ?result;
+	sosa:PhenomenonTime ?time.
+?result qudt:numericValue ?value.
+FILTER(?value < 100)
+?window vss:position ?position.
+}
+ORDER BY DESC(?time)
 ```
 #### What is the local temperature on the driver side?
 ```SPARQL
