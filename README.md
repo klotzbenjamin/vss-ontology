@@ -25,8 +25,9 @@ WHERE { ?attribute  rdfs:subPropertyOf  vss:attribute.
 ```
 #### How many attributes does my car have?
 ```SPARQL
-SELECT ?attributes (count(distinct ?attributes) as ?count)
-?attribute  rdfs:subPropertyOf  vss:attribute.}
+SELECT ?attribute (count(distinct ?attribute) as ?count)
+WHERE {?attribute  rdfs:subPropertyOf  vss:attribute.}
+GROUP BY ?attribute
 ```
 #### What is the model of this car?
 ```SPARQL
