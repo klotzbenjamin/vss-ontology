@@ -60,6 +60,18 @@ def mapType(x):
     'ByteBuffer': 'TODO: map ByteBuffer'
     }[x]
 
+def mapcdtUnit(x,y):
+    return {
+    'N.m': 'cdt:ucum',
+    'cm3': 'cdt:volume',
+    'kw': 'cdt:power',
+    'l': 'cdt:volume',
+    'mm': 'cdt:length',
+    'kg': 'cdt:mass',
+    'inch': 'cdt:length',
+    '""':mapType(y)
+}[x]
+
 def mapUnit(x):
     return {
     'A': 'qudt:ElectricCurrentUnit',
@@ -77,45 +89,58 @@ def mapUnit(x):
     'kilometer': 'qudt:LengthUnit',
     'km': 'qudt:LengthUnit',
     'km/h': 'qudt:LinearVelocityUnit',
-    'kpa': 'unit:PressureOrStressUnit',
+    'kpa': 'qudt:PressureOrStressUnit',
     'l': 'qudt:VolumeUnit',
     'l/h': 'qudt:VolumePerTimeUnit',
     'm': 'qudt:LengthUnit',
     'm/s': 'qudt:LinearVelocityUnit',
     'm/s2': 'qudt:LinearAccelerationUnit',
-    'mbar': 'unit:PressureOrStressUnit',
+    'mbar': 'qudt:PressureOrStressUnit',
     'min': 'qudt:TimeUnit',
     'ml': 'qudt:VolumeUnit',
     'ml/100km': 'vss:VolumePerDistanceUnit', #TODO: create unit
     'l/100km': 'vss:VolumePerDistanceUnit', #TODO: create unit
     'mm': 'qudt:LengthUnit',
-    'pa': 'unit:PressureOrStressUnit',
+    'pa': 'qudt:PressureOrStressUnit',
     'percent': 'qudt:DimensionlessUnit',
     'percentage': 'qudt:DimensionlessUnit',
     'ratio': 'qudt:DimensionlessUnit',
     'rpm': 'qudt:AngularVelocityUnit',
     's': 'qudt:TimeUnit',
-    '""':""
+    '""':"qudt:DimensionlessUnit"
 }[x]
+
+def writeSignals(signalList):
+    toWrite=""
+    for x in signalList:
+        toWrite=toWrite+"vss:"+x+", "
+    return toWrite[:-2]
 
 def writeTurtle(entry):
     towrite=""
 
-    if entry.entryType == "branch" and entry.name not in ["Left","Right","Row1","Row2","Row3","Row4","Pos1","Pos2","Pos3","Pos4","Pos5"]:
+    if entry.entryType == "branch" and entry.name not in ["Left","Right","Row1","Row2","Row3","Row4","Pos1","Pos2","Pos3","Pos4","Pos5", "Signal", "Attribute","Private"]:
         s="""
 vss:{name} a rdfs:Class, owl:Class;
     rdfs:subClassOf vss:Branch;
     rdfs:label "{name}"@en;
-    rdfs:comment "{path} : {comment}"@en
+    rdfs:comment "{path} : {comment}"@en;
     rdfs:subClassOf [
         owl:onProperty vss:partOf;
-        owl:allValuesFrom vss:{superBranch}.
-    ];
+        owl:allValuesFrom vss:{superBranch}
+    ]""".format(name=entry.name, path=entry.path, superBranch=entry.path.split(".")[len(entry.path.split("."))-2],comment=entry.comment)
+        towrite=towrite+s
+        if len(entry.children)>1:
+            s=""";
     rdfs:subClassOf [
+        a owl:Restriction;
         owl:onProperty vss:hasSignal;
-        owl:allValuesFrom [owl:unionOf {children}].
-    ];
-""".format(name=entry.name, path=entry.path, superBranch=entry.path.split(".")[len(entry.path.split("."))-2],comment=entry.comment,children=str(entry.children))
+        owl:allValuesFrom [owl:unionOf {children}]
+    ].
+""".format(children=writeSignals(entry.children))
+        else:
+            s=""".
+            """
         towrite=towrite+s
 
     
@@ -135,17 +160,24 @@ vss:{name} a rdfs:Class, owl:Class;
 vss:{name} a rdfs:Class, owl:Class;
     rdfs:subClassOf {subClass};
     rdfs:label "{name}"@en;
-    rdfs:comment "{path} : {comment}"@en
+    rdfs:comment "{path} : {comment}"@en;
     rdfs:subClassOf [
+        a owl:Restriction;
         owl:onProperty {restrictionSensor};
-        owl:allValuesFrom vss:{sensor}.
+        owl:allValuesFrom vss:{sensor}
     ];
     rdfs:subClassOf [
+        a owl:Restriction;
         owl:onProperty {restrictionActuator};
-        owl:allValuesFrom vss:{actuator}.
+        owl:allValuesFrom vss:{actuator}
     ];
+    rdfs:subClassOf [
+        a owl:Restriction;
+        owl:onProperty qudt:unit;
+        owl:allValuesFrom {unit}
+    ].
 """.format(name=entry.name, subClass=subClass,path=entry.path, restrictionSensor=restrictionSensor, 
-    restrictionActuator=restrictionActuator,comment=entry.comment,sensor=entry.sensor, actuator=entry.actuator)
+    restrictionActuator=restrictionActuator,comment=entry.comment,sensor=entry.sensor.replace('"',"").replace(" ",""), actuator=entry.actuator.replace('"',"").replace(" ",""),unit=unit)
         towrite=towrite+s
 
         if len(entry.sensor)>0 and len(entry.actuator)==0:
@@ -156,10 +188,11 @@ vss:{name} a rdfs:Class, owl:Class;
 vss:{name} a rdfs:Class, owl:Class;
     rdfs:subClassOf {subClass};
     rdfs:label "{name}"@en;
-    rdfs:comment "{path} : {comment}"@en
+    rdfs:comment "{path} : {comment}"@en;
     rdfs:subClassOf [
+        a owl:Restriction;
         owl:onProperty {restriction};
-        owl:allValuesFrom vss:{device}.
+        owl:allValuesFrom vss:{device}
     ];
 """.format(name=entry.name, subClass=subClass,path=entry.path, restriction=restriction,comment=entry.comment,device=device)
 
@@ -171,10 +204,11 @@ vss:{name} a rdfs:Class, owl:Class;
 vss:{name} a rdfs:Class, owl:Class;
     rdfs:subClassOf {subClass};
     rdfs:label "{name}"@en;
-    rdfs:comment "{path} : {comment}"@en
+    rdfs:comment "{path} : {comment}"@en;
     rdfs:subClassOf [
+        a owl:Restriction;
         owl:onProperty {restriction};
-        owl:allValuesFrom vss:{device}.
+        owl:allValuesFrom vss:{device}
     ];
 """.format(name=entry.name, subClass=subClass,path=entry.path, restriction=restriction,comment=entry.comment,device=device)
         elif len(entry.sensor)==0 and len(entry.actuator)==0:
@@ -183,13 +217,13 @@ vss:{name} a rdfs:Class, owl:Class;
         towrite=towrite+s
 
     if entry.branch[0]=="Attribute" and entry.entryType!="branch":
-        if len(entry.enum)>1:
+        if len(entry.enum)>2:
             propertyRange="[owl:oneOf("
             for x in entry.enum:
-                propertyRange=propertyRange+'"'+x+'"@en,'
-            propertyRange=propertyRange+")]"
+                propertyRange=propertyRange+'"'+x+'"@en '
+            propertyRange=propertyRange[:-1]+")]"
         else:
-            propertyRange=mapType(entry.entryType) #TODO: check translation
+            propertyRange=mapcdtUnit(entry.unit,entry.entryType) #TODO: check translation
             
         s="""
 vss:{name} a owl:DatatypeProperty;
@@ -199,7 +233,7 @@ vss:{name} a owl:DatatypeProperty;
     rdfs:domain vss:{branch};
     rdfs:range {range}.
 
-""".format(name=entry.name,path=entry.path,comment=entry.comment,branch=entry.branch[-2], range=propertyRange)
+""".format(name=entry.name.lower(),path=entry.path,comment=entry.comment,branch=entry.branch[-2], range=propertyRange)
         towrite=towrite+s
 
     return towrite
@@ -321,6 +355,19 @@ if __name__ == "__main__":
         print "Error: {}".format(e)
         exit(255)
 
+    rdf_out.write("""@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix sosa: <http://www.w3.org/ns/sosa/>.
+@prefix qudt: <http://qudt.org/schema/qudt/>.
+@prefix vss: <https://vss.org#> .
+@prefix cdt: <http://w3id.org/lindt/custom_datatypes#> .
+""")
     json2rdf(tree, rdf_out, "")
     rdf_out.write("\n")
     rdf_out.close()
+    with open (args[1], "r") as rdf_out:
+        filedata=rdf_out.read().replace("vss:Attribute","vss:Vehicle").replace("vss:Signal","vss:Vehicle")
+    with open (args[1], "w") as rdf_out:
+        rdf_out.write(filedata)
