@@ -303,24 +303,32 @@ def format_data(path, json_data):
     if (json_data.has_key('children')):
         Children=list(set(getChildren(path, json_data)))
         Position=list(set(getPosition(path, json_data)))
-    print path
-    print Position
     return makeEntry(path.split('.'),path.split('.')[-1],Type, Unit, path,Desc, Enum, Sensor, Actuator, Children)
 
-def json2rdf(json_data, file_out, parent_signal):
+def json2rdf(json_data, file_out,file_out_ext, parent_signal):
     for k in json_data.keys():
         if (len(parent_signal) > 0):
             signal = parent_signal + "." + k
         else:
             signal = k
 
-        if (json_data[k]['type'] == 'branch'):
-            #file_out.write(signal + ',' + format_data(json_data[k]) + '\n')
-            file_out.write(writeTurtle(format_data(signal,json_data[k])))
-            json2rdf(json_data[k]['children'], file_out, signal)
+        if parent_signal.split(".")[0]=="Private":
+            print signal
+            if (json_data[k]['type'] == 'branch'):
+                #file_out.write(signal + ',' + format_data(json_data[k]) + '\n')
+                file_out_ext.write(writeTurtle(format_data(signal,json_data[k])))
+                json2rdf(json_data[k]['children'], file_out,file_out_ext, signal)
+            else:
+                #file_out.write(signal + ',' + format_data(json_data[k]) + '\n')
+                file_out_ext.write(writeTurtle(format_data(signal,json_data[k])))
         else:
-            #file_out.write(signal + ',' + format_data(json_data[k]) + '\n')
-            file_out.write(writeTurtle(format_data(signal,json_data[k])))
+            if (json_data[k]['type'] == 'branch'):
+                #file_out.write(signal + ',' + format_data(json_data[k]) + '\n')
+                file_out.write(writeTurtle(format_data(signal,json_data[k])))
+                json2rdf(json_data[k]['children'], file_out,file_out_ext, signal)
+            else:
+                #file_out.write(signal + ',' + format_data(json_data[k]) + '\n')
+                file_out.write(writeTurtle(format_data(signal,json_data[k])))
 
 if __name__ == "__main__":
     # 
@@ -347,7 +355,9 @@ if __name__ == "__main__":
     if len(args) != 2:
         usage()
 
+    args.append(args[1].split(".")[0]+"Extension.ttl")
     rdf_out = open (args[1], "w")
+    rdf_out_ext = open (args[2], "w")
 
     try:
         tree = vspec.load(args[0], include_dirs)
@@ -364,7 +374,7 @@ if __name__ == "__main__":
 @prefix vss: <https://vss.org#> .
 @prefix cdt: <http://w3id.org/lindt/custom_datatypes#> .
 """)
-    json2rdf(tree, rdf_out, "")
+    json2rdf(tree, rdf_out,rdf_out_ext, "")
     rdf_out.write("\n")
     rdf_out.close()
     with open (args[1], "r") as rdf_out:
