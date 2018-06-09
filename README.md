@@ -17,16 +17,16 @@ A public demonstrator is available at http://automotive.eurecom.fr/trajectory
 Here is a list of competency question, that served to evaluate VSSo, expressed when possible as SPARQL queries on VSSo datasets.
 
 ### Car Attributes
-#### What are the attributes of my car and what do they express?
+#### What are the attributes of this car and what do they express?
 ```SPARQL
 SELECT ?attribute ?branch ?value
 WHERE { ?attribute  rdfs:subPropertyOf  vss:attribute.
 ?branch ?attribute ?value.}
 ```
-#### How many attributes does my car have?
+#### How many attributes does this car have?
 ```SPARQL
-SELECT (count(distinct ?attribute) as ?count)
-WHERE {?attribute  rdfs:subPropertyOf  vss:attribute.}
+SELECT (count(distinct ?attribute) as ?nbAttribute)
+WHERE{?attribute  rdfs:subPropertyOf  vss:attribute.}
 GROUP BY ?x
 ```
 #### What is the model of this car?
@@ -34,76 +34,76 @@ GROUP BY ?x
 SELECT ?model
 WHERE { ?branch vss:model ?model.}
 ```
-#### What is the brand of my car?
+#### What is the brand of this car?
 ```SPARQL
 SELECT ?brand
 WHERE { ?branch vss:brand ?brand.}
 ```
-#### What is the VIN of my car?
+#### What is the VIN of this car?
 ```SPARQL
 SELECT ?vin
 WHERE { ?branch vss:vin ?vin.}
 ```
-#### How old is my car?
+#### How old is this car?
 ```SPARQL
 SELECT ?age
 WHERE { ?branch vss:year ?year.
 BIND((2018-?year) AS ?age)}
 ```
-#### What are the dimensions of my car?
+#### What are the dimensions of this car?
 ```SPARQL
 SELECT ?length ?width ?height
 WHERE { ?branch vss:length ?length;
 	vss:width ?width;
 	vss:height ?height.}
 ```
-#### What type of fuel does my car need?
+#### What are the characteristics of this car's chassis?
+```SPARQL
+SELECT ?attribute ?value
+WHERE { ?attribute  rdfs:subPropertyOf  vss:attribute.
+?chassis a vss:Chassis;
+  ?attribute ?value.}
+```
+#### What type of fuel does this car need?
 ```SPARQL
 SELECT ?fueltype
 WHERE {?branch vss:fuelType ?fuelType.}
 ```
-#### What type of transmission does my car have?
+#### What type of transmission does this car have?
 ```SPARQL
 SELECT ?type
 WHERE { ?branch vss:transmissionType ?type.}
 ```
-#### What are the characteristics of my engine?
+#### What are the characteristics of this engine?
 ```SPARQL
 SELECT ?engine ?attribute ?value
 WHERE { ?attribute  rdfs:subPropertyOf  vss:attribute.
 ?engine a vss:InternalCombustionEngine;
   ?attribute ?value.}
 ```
-#### How many doors does my car contain?
+#### How many doors does this car contain?
 ```SPARQL
-SELECT ?attributes (count(distinct ?attributes) as ?count)
-WHERE{?attribute  rdfs:subPropertyOf  vss:attribute.
-?door a vss:Door.
-{?door ?attribute ?value}
-UNION
-{?branch vss:partOf ?door;
-  ?branch ?attribute ?value}}
+SELECT ?nbDoor
+WHERE { ?branch vss:doorCount ?nbDoor.}
 ```
-#### How many seats do I have in my car?
+#### How many seats do I have this my car?
 ```SPARQL
-SELECT ?seats (count(distinct ?seats) as ?count)
-WHERE { ?row1  a  vss:row1PosCount.
-?row2  a  vss:row2PosCount.
-?row3  a  vss:row3PosCount.
-?row4  a  vss:row4PosCount.
-?row5  a  vss:row5PosCount.
-?branch ?row1 ?row1Count.
-?branch ?row2 ?row2Count.
-?branch ?row3 ?row3Count.
-?branch ?row4 ?row4Count.
-?branch ?row5 ?row5Count.
-BIND((?row1+?row2+?row3+?row4+?row5) AS ?seats)}
+SELECT ?nbSeats ?nbRows
+WHERE { ?seats a vss:Seat;
+	vss:rowCount ?nbRows;
+	vss:row1PosCount ?row1Count;
+	vss:row2PosCount ?row2Count;
+	vss:row3PosCount ?row3Count;
+	vss:row4PosCount ?row4Count;
+vss:row5PosCount ?row5Count.
+BIND((?row1Count + ?row2Count + ?row3Count + ?row4Count + ?row5Count) AS ?nbSeats)}
+
 ```
 #### On which side is located the steering wheel?
 ```SPARQL
-SELECT ?side
-WHERE { ?attribute  a  vss:steeringWheelSide.
-?branch ?attribute ?side.}
+SELECT ?steeringWheelSide
+WHERE { ?wheel a vss:SteeringWheel;
+vss:steeringWheelSide ?steeringWheelSide.}
 ```
 
 ### Static Signals
@@ -118,45 +118,43 @@ SELECT ?signal ?actuator
 WHERE { ?actuator  vss:consumes ?signal.
   ?signal a vss:ActuatableSignal.}
 ```
-#### Which signals are both observable and actuable?
+#### Which signals are both observable and actuatable?
 ```SPARQL
 SELECT ?signal ?sensor ?actuator
 WHERE { ?actuator  vss:consumes ?signal.
-  ?sensor sosa:observes ?signal.
-  ?signal a vss:ActuatableSignal, vss:ObservableSignal.}
+?sensor sosa:observes ?signal.
+?signal a vss:ActuatableSignal, vss:ObservableSignal.}
 ```
-#### How many sensors does my car contain?
+#### How many sensors does this car contain?
 ```SPARQL
-SELECT ?sensor (count(distinct ?sensor) as ?count)
+SELECT (count(distinct ?sensor) as ?nbSensor)
 WHERE { ?sensor sosa:observes ?signal.
-  ?signal a vss:ObservableSignal.}
+	?signal a vss:ObservableSignal.}
 ```
-#### How many different speedometers does my car contain?
+#### How many different speedometers does this car contain?
 ```SPARQL
-SELECT ?sensor (count(distinct ?sensor) as ?count)
+SELECT (count(distinct ?sensor) as ?nbSpeedSensors)
 WHERE { ?sensor a vss:Speedometer.}
 ```
-#### In which part of my car is produced the signal vss:LongitudinalAcceleration?
+#### In which part of thismy car is produced the signal vss:LongitudinalAcceleration?
 ```SPARQL
-SELECT ?branch
-WHERE { ?branch  a  vss:Branch.
-?branch vss:hasSignal vss:LongitudinalAcceleration.
-FILTER NOT EXIST{?x vss:partOf ?p}
+SELECT ?branch ?branchType
+WHERE { ?branch  a  ?branchType;
+	vss:hasSignal ?signal.
+?signal a vss:LongitudinalAcceleration.
 }
 ```
-#### Which signals measure a temperature, and in which part of my car?
+#### Which signals measure a temperature, and in which part of this car?
 ```SPARQL
 SELECT ?signal ?branch
-WHERE { ?branch  a  vss:Branch.
-?branch vss:hasSignal ?signal.
+WHERE { ?branch vss:hasSignal ?signal.
 ?signal a vss:AmbientAirTemperature.
-FILTER NOT EXIST{?x vss:partOf ?p}
 }
 ```
-#### What unit type does the signal vss:VehicleYaw use?
+#### What unit type does the signals of type vss:VehicleYaw use?
 ```SPARQL
-SELECT ?unitsystem
-WHERE { ?yaw  a vss:VehicleYaw;
+SELECT ?signal ?unitsystem
+WHERE { ?signal  a vss:VehicleYaw;
 qudt:unit ?unitsystem.}
 ```
 #### What are the characteristics of the sensor producing the signal “TravelledDistance” in the OBD branch?
@@ -184,7 +182,7 @@ WHERE {?signal a vss:CurrentGear.
 ORDER BY DESC(?time)
 LIMIT 1
 ```
-#### What are the values of all signals representing the speed of my car?
+#### What are the values of all signals representing the speed of this car now?
 ```SPARQL
 SELECT ?signal ?result ?time
 WHERE {?signal a vss:VehicleSpeed.
@@ -195,23 +193,37 @@ WHERE {?signal a vss:VehicleSpeed.
 }
 ORDER BY DESC(?time)
 ```
-#### Which windows are open?
+#### Which windows are currently open?
 ```SPARQL
-SELECT ?position
-WHERE {?windowPosition a vss:WindowPosition.
-?window vss:hasSignal ?windowPosition.
+SELECT ?position ?value ?time
+WHERE {?signal a vss:WindowPosition.
+?window vss:hasSignal ?signal.
 ?obs a sosa:Observation;
-	sosa:observedProperty ?windowPosition;
-	sosa:hasResult ?result;
-	sosa:PhenomenonTime ?time.
-?result qudt:numericValue ?value.
-FILTER(?value < 100)
+	sosa:observedProperty ?signal;
+	sosa:hasSimpleResult ?value;
+	sosa:phenomenonTime ?time.
 ?window vss:position ?position.
 }
 ORDER BY DESC(?time)
 ```
-#### What is the local temperature on the driver side?
+#### What is the local current temperature on the driver side?
 ```SPARQL
+SELECT DISTINCT ?localTemperature ?value ?position ?time
+WHERE { ?wheel a vss:SteeringWheel;
+vss:steeringWheelSide ?steeringWheelSide.
+?branch a vss:LocalHVAC;
+vss:position ?position;
+vss:hasSignal ?localTemperature.
+?localTemperature a vss:LocalTemperature.
+FILTER regex(str(?steeringWheelSide),str(?position))
+
+?obs a sosa:Observation;
+	sosa:observedProperty ?localTemperature;
+	sosa:hasSimpleResult ?value;
+	sosa:phenomenonTime ?time.
+}
+ORDER BY DESC(?time)
+LIMIT 1
 ```
 #### What are the current values of signals defining the driver seat position?
 ```SPARQL
