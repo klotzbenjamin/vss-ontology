@@ -4,6 +4,7 @@
 # Convert vspec file to RDF (turtle srialization)
 #
 from openpyxl import load_workbook
+from rdflib import Graph
 import sys
 import vspec
 import json
@@ -149,8 +150,6 @@ vss:{name} a rdfs:Class, owl:Class;
         restriction=""
         device=""
         unit=mapUnit(entry.unit)
-        print entry.name
-        print unit
 
         if len(entry.sensor)>0 and len(entry.actuator)>0:
             subClass="vss:ObservableSignal, vss:ActuableSignal"
@@ -313,7 +312,6 @@ def json2rdf(json_data, file_out,file_out_ext, parent_signal):
             signal = k
 
         if parent_signal.split(".")[0]=="Private":
-            print signal
             if (json_data[k]['type'] == 'branch'):
                 #file_out.write(signal + ',' + format_data(json_data[k]) + '\n')
                 file_out_ext.write(writeTurtle(format_data(signal,json_data[k])))
@@ -371,8 +369,22 @@ if __name__ == "__main__":
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix sosa: <http://www.w3.org/ns/sosa/>.
 @prefix qudt: <http://qudt.org/schema/qudt/>.
-@prefix vss: <https://vss.org#> .
+@prefix vss: <http://automotive.eurecom.fr/vsso#> .
 @prefix cdt: <http://w3id.org/lindt/custom_datatypes#> .
+
+<http://private.uri> rdf:type owl:Ontology.
+""")
+    rdf_out_ext.write("""@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix sosa: <http://www.w3.org/ns/sosa/>.
+@prefix qudt: <http://qudt.org/schema/qudt/>.
+@prefix vss: <http://automotive.eurecom.fr/vsso#> .
+@prefix cdt: <http://w3id.org/lindt/custom_datatypes#> .
+
+<http://private.uri> rdf:type owl:Ontology;
+    owl:imports <http://automotive.eurecom.fr/vsso>.
 """)
     json2rdf(tree, rdf_out,rdf_out_ext, "")
     rdf_out.write("\n")
@@ -381,3 +393,19 @@ if __name__ == "__main__":
         filedata=rdf_out.read().replace("vss:Attribute","vss:Vehicle").replace("vss:Signal","vss:Vehicle")
     with open (args[1], "w") as rdf_out:
         rdf_out.write(filedata)
+
+    #Validation of the generated ontologies
+    print "parsing generated ontologies"
+    g = Graph()
+    try:
+        g.parse("generatedVSSo.ttl",format='turtle')
+    except Exception,e:
+        print "The generated ontology generatedVSSo could not be parsed. Error "+str(e)
+    try:
+        g.parse("generatedVSSoExtension.ttl",format='turtle')
+    except Exception,e:
+        print "The generated ontology generatedVSSoExtension could not be parsed. Error "+str(e)
+    
+    print "The 2 generated ontologies could be parsed"
+    print "Please check that the generated queries follow the SOSA pattern and do not contain hominymy"
+    print "Check oops.linkeddata.es or visualdataweb.de/validator for other validations"
