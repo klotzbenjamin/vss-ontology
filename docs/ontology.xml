@@ -2,24 +2,11 @@
 <rdf:RDF xmlns="http://automotive.eurecom.fr/vsso#"
      xml:base="http://automotive.eurecom.fr/vsso"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:terms="http://purl.org/dc/terms/"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:vann="http://purl.org/vocab/vann/"
-     xmlns:dc="http://purl.org/dc/elements/1.1/">
-    <owl:Ontology rdf:about="http://automotive.eurecom.fr/vsso#">
-        <owl:imports rdf:resource="http://www.w3.org/ns/sosa/"/>
-        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This ontology describes the car&apos;s attributes, branches and signals defined in GENIVI&apos;s Vehicle Signal Specification.</dc:description>
-        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2018-01-10</terms:created>
-        <terms:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2018-04-23</terms:issued>
-        <terms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2018-06-01</terms:modified>
-        <terms:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">VSSo</terms:title>
-        <vann:preferredNamespacePrefix rdf:datatype="http://www.w3.org/2001/XMLSchema#string">vss</vann:preferredNamespacePrefix>
-        <vann:preferredNamespaceUri rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://automotive.eurecom.fr/vsso</vann:preferredNamespaceUri>
-        <owl:versionInfo xml:lang="en">v0.1 01/06/2018 - Most VSS concepts are mapped</owl:versionInfo>
-    </owl:Ontology>
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://automotive.eurecom.fr/vsso#"/>
     
 
 
@@ -35,25 +22,10 @@
     
 
 
-    <!-- http://automotive.eurecom.fr/vsso#ActuableSignal -->
+    <!-- http://automotive.eurecom.fr/vsso#ActuatableSignal -->
 
 
-    <owl:ObjectProperty rdf:about="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
-    
-
-
-    <!-- http://automotive.eurecom.fr/vsso#SteeringWheelSide -->
-
-
-    <owl:ObjectProperty rdf:about="http://automotive.eurecom.fr/vsso#SteeringWheelSide">
-        <rdfs:subPropertyOf rdf:resource="http://automotive.eurecom.fr/vsso#attribute"/>
-        <rdfs:domain rdf:resource="http://automotive.eurecom.fr/vsso#SteeringWheel"/>
-        <rdfs:range>
-            <owl:Class>
-                <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-            </owl:Class>
-        </rdfs:range>
-    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
     
 
 
@@ -114,6 +86,7 @@
 
     <owl:ObjectProperty rdf:about="http://automotive.eurecom.fr/vsso#displacement">
         <rdfs:subPropertyOf rdf:resource="http://automotive.eurecom.fr/vsso#attribute"/>
+        <rdfs:domain rdf:resource="http://automotive.eurecom.fr/vsso#Engine"/>
         <rdfs:range rdf:resource="http://w3id.org/lindt/custom_datatypes#volume"/>
     </owl:ObjectProperty>
     
@@ -159,7 +132,7 @@
 
     <owl:ObjectProperty rdf:about="http://automotive.eurecom.fr/vsso#engineConfiguration">
         <rdfs:subPropertyOf rdf:resource="http://automotive.eurecom.fr/vsso#attribute"/>
-        <rdfs:domain rdf:resource="http://automotive.eurecom.fr/vsso#InternalCombustionEngine"/>
+        <rdfs:domain rdf:resource="http://automotive.eurecom.fr/vsso#Engine"/>
         <rdfs:range>
             <owl:Class>
                 <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -174,7 +147,7 @@
 
     <owl:ObjectProperty rdf:about="http://automotive.eurecom.fr/vsso#fuelType">
         <rdfs:subPropertyOf rdf:resource="http://automotive.eurecom.fr/vsso#attribute"/>
-        <rdfs:domain rdf:resource="http://automotive.eurecom.fr/vsso#InternalCombustionEngine"/>
+        <rdfs:domain rdf:resource="http://automotive.eurecom.fr/vsso#Engine"/>
         <rdfs:range>
             <owl:Class>
                 <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -212,7 +185,10 @@
         <rdfs:domain rdf:resource="http://automotive.eurecom.fr/vsso#Branch"/>
         <rdfs:range>
             <owl:Class>
-                <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
+                    <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
+                </owl:unionOf>
             </owl:Class>
         </rdfs:range>
         <rdfs:comment xml:lang="en">Property of having signals in a branch</rdfs:comment>
@@ -248,7 +224,7 @@
 
     <owl:ObjectProperty rdf:about="http://automotive.eurecom.fr/vsso#maxPower">
         <rdfs:subPropertyOf rdf:resource="http://automotive.eurecom.fr/vsso#attribute"/>
-        <rdfs:domain rdf:resource="http://automotive.eurecom.fr/vsso#InternalCombustionEngine"/>
+        <rdfs:domain rdf:resource="http://automotive.eurecom.fr/vsso#Engine"/>
         <rdfs:range rdf:resource="http://w3id.org/lindt/custom_datatypes#power"/>
     </owl:ObjectProperty>
     
@@ -259,7 +235,7 @@
 
     <owl:ObjectProperty rdf:about="http://automotive.eurecom.fr/vsso#maxTorque">
         <rdfs:subPropertyOf rdf:resource="http://automotive.eurecom.fr/vsso#attribute"/>
-        <rdfs:domain rdf:resource="http://automotive.eurecom.fr/vsso#InternalCombustionEngine"/>
+        <rdfs:domain rdf:resource="http://automotive.eurecom.fr/vsso#Engine"/>
         <rdfs:range rdf:resource="http://w3id.org/lindt/custom_datatypes#ucum"/>
     </owl:ObjectProperty>
     
@@ -293,6 +269,7 @@
 
     <owl:ObjectProperty rdf:about="http://automotive.eurecom.fr/vsso#position">
         <rdfs:domain rdf:resource="http://automotive.eurecom.fr/vsso#Branch"/>
+        <rdfs:range rdf:resource="http://automotive.eurecom.fr/vsso#Position"/>
         <rdfs:comment xml:lang="en">position of the branch within the vehicle</rdfs:comment>
         <rdfs:label xml:lang="en">position</rdfs:label>
     </owl:ObjectProperty>
@@ -370,6 +347,21 @@
     <owl:ObjectProperty rdf:about="http://automotive.eurecom.fr/vsso#rowCount">
         <rdfs:subPropertyOf rdf:resource="http://automotive.eurecom.fr/vsso#attribute"/>
         <rdfs:domain rdf:resource="http://automotive.eurecom.fr/vsso#Seat"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://automotive.eurecom.fr/vsso#steeringWheelSide -->
+
+
+    <owl:ObjectProperty rdf:about="http://automotive.eurecom.fr/vsso#steeringWheelSide">
+        <rdfs:subPropertyOf rdf:resource="http://automotive.eurecom.fr/vsso#attribute"/>
+        <rdfs:domain rdf:resource="http://automotive.eurecom.fr/vsso#SteeringWheel"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </owl:Class>
+        </rdfs:range>
     </owl:ObjectProperty>
     
 
@@ -554,13 +546,6 @@
     
 
 
-    <!-- http://automotive.eurecom.fr/vsso#SteeringWheelSide -->
-
-
-    <owl:DatatypeProperty rdf:about="http://automotive.eurecom.fr/vsso#SteeringWheelSide"/>
-    
-
-
     <!-- http://automotive.eurecom.fr/vsso#axleCount -->
 
 
@@ -598,9 +583,7 @@
     <!-- http://automotive.eurecom.fr/vsso#displacement -->
 
 
-    <owl:DatatypeProperty rdf:about="http://automotive.eurecom.fr/vsso#displacement">
-        <rdfs:domain rdf:resource="http://automotive.eurecom.fr/vsso#InternalCombustionEngine"/>
-    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="http://automotive.eurecom.fr/vsso#displacement"/>
     
 
 
@@ -757,6 +740,13 @@
     
 
 
+    <!-- http://automotive.eurecom.fr/vsso#steeringWheelSide -->
+
+
+    <owl:DatatypeProperty rdf:about="http://automotive.eurecom.fr/vsso#steeringWheelSide"/>
+    
+
+
     <!-- http://automotive.eurecom.fr/vsso#tankCapacity -->
 
 
@@ -885,7 +875,11 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ABSError"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ABSIsActive"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ABSIsEngaged"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -929,7 +923,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#ABSIsActive">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1028,7 +1022,11 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#LateralAcceleration"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#LongitudinalAcceleration"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#VerticalAcceleration"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -1240,10 +1238,10 @@
     
 
 
-    <!-- http://automotive.eurecom.fr/vsso#ActuableSignal -->
+    <!-- http://automotive.eurecom.fr/vsso#ActuatableSignal -->
 
 
-    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#ActuableSignal">
+    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#ActuatableSignal">
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/ActuableProperty"/>
     </owl:Class>
     
@@ -1265,7 +1263,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#AirDistribution">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1295,7 +1293,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#AirStatus">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1343,7 +1341,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -1378,6 +1381,17 @@
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
         <rdfs:comment xml:lang="en">Sensor measuring if the airbag is deployed</rdfs:comment>
         <rdfs:label xml:lang="en">Airbag system</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://automotive.eurecom.fr/vsso#AllPositions -->
+
+
+    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#AllPositions">
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#Position"/>
+        <rdfs:comment xml:lang="en">All possible positions of a branch</rdfs:comment>
+        <rdfs:label xml:lang="en">All</rdfs:label>
     </owl:Class>
     
 
@@ -1478,7 +1492,11 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#VehiclePitch"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#VehicleRoll"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#VehicleYaw"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -1511,7 +1529,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#AuxInputStatus">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1600,17 +1618,14 @@
     
 
 
-    <!-- http://automotive.eurecom.fr/vsso#Bank2 -->
-
-
-    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#Bank2"/>
-    
-
-
     <!-- http://automotive.eurecom.fr/vsso#Barometer -->
 
 
-    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#Barometer"/>
+    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#Barometer">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
+        <rdfs:comment xml:lang="en">Sensor measuring the atmospheric pressure</rdfs:comment>
+        <rdfs:label xml:lang="en">Barometer</rdfs:label>
+    </owl:Class>
     
 
 
@@ -1670,7 +1685,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#BatteryCapacity"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#BatteryTemperature"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -1695,13 +1713,6 @@
         <rdfs:comment xml:lang="en">Sensor measuring the capacity of a battery</rdfs:comment>
         <rdfs:label xml:lang="en">Battery monitor</rdfs:label>
     </owl:Class>
-    
-
-
-    <!-- http://automotive.eurecom.fr/vsso#BatterySensor -->
-
-
-    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#BatterySensor"/>
     
 
 
@@ -1766,7 +1777,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#BrakeFluidLevel"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#BrakeFluidLevelLow"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#BrakesWorn"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Padwear"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -1782,7 +1798,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -1981,11 +2002,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
-                <owl:allValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                    </owl:Class>
-                </owl:allValuesFrom>
+                <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#CatalystTemperature"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2120,7 +2137,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#CommandedEVAP">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -2273,7 +2290,11 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#CruiseControlError"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#CruiseControlIsActive"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#SpeedSet"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -2317,7 +2338,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#CruiseControlIsActive">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -2365,7 +2386,11 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#DTCCount"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#IgnitionType"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#MIL"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -2382,36 +2407,6 @@
     
 
 
-    <!-- http://automotive.eurecom.fr/vsso#CurrentGear -->
-
-
-    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#CurrentGear">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://qudt.org/schema/qudt/unit"/>
-                <owl:allValuesFrom rdf:resource="http://qudt.org/schema/qudt/DimensionlessUnit"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/isActuatedBy"/>
-                <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#Gearbox"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/isObservedBy"/>
-                <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#Gearbox"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment xml:lang="en">Signal.Drivetrain.Transmission.Gear : Current gear. 0=Neutral. -1=Reverse</rdfs:comment>
-        <rdfs:label xml:lang="en">Gear</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- http://automotive.eurecom.fr/vsso#CurrentLocation -->
 
 
@@ -2422,7 +2417,14 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Altitude"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#GPSAccuracy"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#GPSHeading"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Latitude"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Longitude"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#VehicleSpeed"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -2439,52 +2441,6 @@
     
 
 
-    <!-- http://automotive.eurecom.fr/vsso#CurrentPower -->
-
-
-    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#CurrentPower">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://qudt.org/schema/qudt/unit"/>
-                <owl:allValuesFrom rdf:resource="http://qudt.org/schema/qudt/PowerUnit"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/isObservedBy"/>
-                <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#PowerMeter"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment xml:lang="en">Signal.Drivetrain.InternalCombustionEngine.Engine.Power : Current engine power output.</rdfs:comment>
-        <rdfs:label xml:lang="en">Power</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://automotive.eurecom.fr/vsso#CurrentTravelledDistance -->
-
-
-    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#CurrentTravelledDistance">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://qudt.org/schema/qudt/unit"/>
-                <owl:allValuesFrom rdf:resource="http://qudt.org/schema/qudt/TimeUnit"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/isObservedBy"/>
-                <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#Odometer"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:comment xml:lang="en">Signal.Vehicle.TripMeterReading : Current trip meter reading</rdfs:comment>
-        <rdfs:label xml:lang="en">TripMeterReading</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- http://automotive.eurecom.fr/vsso#Cushion -->
 
 
@@ -2495,7 +2451,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#CushionHeight"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#CushionLength"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -2511,7 +2470,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -2526,10 +2490,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#CushionBackward">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#CushionPositionActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2539,14 +2503,21 @@
     
 
 
+    <!-- http://automotive.eurecom.fr/vsso#CushionDeflate -->
+
+
+    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#CushionDeflate"/>
+    
+
+
     <!-- http://automotive.eurecom.fr/vsso#CushionDown -->
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#CushionDown">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#CushionPositionActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2560,10 +2531,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#CushionForward">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#CushionPositionActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2593,6 +2564,13 @@
         <rdfs:comment xml:lang="en">Signal.Cabin.Seat.RowX.PosY.Cushion.Height : Height of the seat front. 0 = Lowermost. 100 = Uppermost.</rdfs:comment>
         <rdfs:label xml:lang="en">Height</rdfs:label>
     </owl:Class>
+    
+
+
+    <!-- http://automotive.eurecom.fr/vsso#CushionInflate -->
+
+
+    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#CushionInflate"/>
     
 
 
@@ -2647,7 +2625,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#CushionDeflate"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#CushionDown"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#CushionInflate"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#CushionUp"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -2663,7 +2646,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -2678,10 +2666,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#CushionUp">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#CushionPositionActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2741,10 +2729,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#DecreaseMassage">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#MassageSystem"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2758,10 +2746,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#DeflateSideBolster">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#LumbarPressureActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2787,7 +2775,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#DestinationLatitude">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -2817,7 +2805,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#DestinationLongitude">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -2853,7 +2841,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#DestinationLatitude"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#DestinationLongitude"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -2873,7 +2864,12 @@
     <!-- http://automotive.eurecom.fr/vsso#DiagnosticSystem -->
 
 
-    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#DiagnosticSystem"/>
+    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#DiagnosticSystem">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Actuator"/>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/sosa/Sensor"/>
+        <rdfs:comment xml:lang="en">Diagnistic monitoring system</rdfs:comment>
+        <rdfs:label xml:lang="en">Diagnostic system</rdfs:label>
+    </owl:Class>
     
 
 
@@ -2934,7 +2930,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -3013,7 +3014,11 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#DoorIsLocked"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#DoorIsOpen"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#IsChildLockActive"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -3029,7 +3034,13 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#AllPositions"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -3066,7 +3077,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#DoorIsLocked">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -3096,7 +3107,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#DoorIsOpen">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -3249,7 +3260,11 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ESCError"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ESCIsActive"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ESCIsEngaged"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -3293,7 +3308,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#ESCIsActive">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -3457,7 +3472,17 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#AmbientAirTemperature"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ECT"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#EOP"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#EngineOilTemperature"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#MAF"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#MAP"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Power"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#RotationSpeed"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Torque"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -3608,7 +3633,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#FanSpeed">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -3671,6 +3696,17 @@
         </rdfs:subClassOf>
         <rdfs:comment xml:lang="en">Signal.OBD.FreezeDTC : PID 02 - DTC that triggered the freeze frame</rdfs:comment>
         <rdfs:label xml:lang="en">FreezeDTC</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://automotive.eurecom.fr/vsso#Front -->
+
+
+    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#Front">
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#Position"/>
+        <rdfs:comment xml:lang="en">Front position of a branch</rdfs:comment>
+        <rdfs:label xml:lang="en">Front</rdfs:label>
     </owl:Class>
     
 
@@ -3899,7 +3935,14 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#AverageConsumption"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ConsumptionSinceStart"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#InstantConsumption"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ReachableRange"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#TankLevel"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#TimeSinceStart"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -4006,11 +4049,41 @@
     
 
 
+    <!-- http://automotive.eurecom.fr/vsso#Gear -->
+
+
+    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#Gear">
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://qudt.org/schema/qudt/unit"/>
+                <owl:allValuesFrom rdf:resource="http://qudt.org/schema/qudt/DimensionlessUnit"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/isActuatedBy"/>
+                <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#Gearbox"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/isObservedBy"/>
+                <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#Gearbox"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">Signal.Drivetrain.Transmission.Gear : Current gear. 0=Neutral. -1=Reverse</rdfs:comment>
+        <rdfs:label xml:lang="en">Gear</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://automotive.eurecom.fr/vsso#GearChangeMode -->
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#GearChangeMode">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -4104,7 +4177,13 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#AmbientAirTemperature"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#IsAirConditioningActive"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#IsFrontDefrosterActive"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#IsRearDefrosterActive"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#IsRecirculationActive"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -4165,7 +4244,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -4191,10 +4275,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#HeadRestraintDown">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#HeadRestraintActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4248,7 +4332,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#HeadRestraintDown"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#HeadRestraintUp"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -4264,7 +4351,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -4279,10 +4371,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#HeadRestraintUp">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#HeadRestraintActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4341,7 +4433,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#HoodIsOpen">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -4406,7 +4498,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#HornIsActive">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -4458,7 +4550,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/isObservedBy"/>
-                <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#BatterySensor"/>
+                <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#BatteryMonitor"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment xml:lang="en">Signal.OBD.HybridBatteryRemaining : PID 5B - Remaining life of hybrid battery</rdfs:comment>
@@ -4467,14 +4559,21 @@
     
 
 
+    <!-- http://automotive.eurecom.fr/vsso#IgnitionType -->
+
+
+    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#IgnitionType"/>
+    
+
+
     <!-- http://automotive.eurecom.fr/vsso#IncreaseMassage -->
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#IncreaseMassage">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#MassageSystem"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4488,10 +4587,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#InflateSideBolster">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#LumbarPressureActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4571,13 +4670,6 @@
     
 
 
-    <!-- http://automotive.eurecom.fr/vsso#InternalCombustionEngine -->
-
-
-    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#InternalCombustionEngine"/>
-    
-
-
     <!-- http://automotive.eurecom.fr/vsso#InternalLights -->
 
 
@@ -4588,7 +4680,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#AmbientLightLevel"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#IsGloveBoxLightOn"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#IsTrunkLightOn"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#isDomeLightOn"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -4645,7 +4742,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#IsBackupLightOn">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -4698,7 +4795,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#IsBrakeLightOn">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -4757,7 +4854,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#IsDomeLightOn">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -4787,7 +4884,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#IsFrontDefrosterActive">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -4817,7 +4914,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#IsFrontFogLightOn">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -4847,7 +4944,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#IsGloveBoxLightOn">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -4877,7 +4974,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#IsHazardLightOn">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -4907,7 +5004,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#IsHighBeamOn">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -4937,7 +5034,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#IsLeftIndicatorOn">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -4967,7 +5064,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#IsLowBeamOn">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -4997,7 +5094,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#IsParkingLightOn">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -5027,7 +5124,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#IsPassengerLightOn">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -5057,7 +5154,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#IsRearDefrosterActive">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -5087,7 +5184,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#IsRearFogLightOn">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -5117,7 +5214,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#IsRecirculationActive">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -5147,7 +5244,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#IsRightIndicatorOn">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -5177,7 +5274,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#IsRunningLightOn">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -5224,7 +5321,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#IsTrunkLightOn">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -5260,7 +5357,11 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#LaneDepartureDetectionError"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#LaneDepartureDetectionIsActive"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#LaneDepartureDetectionWarning"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -5304,7 +5405,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#LaneDepartureDetectionIsActive">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -5411,6 +5512,17 @@
     
 
 
+    <!-- http://automotive.eurecom.fr/vsso#Left -->
+
+
+    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#Left">
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#Position"/>
+        <rdfs:comment xml:lang="en">Left position of a branch</rdfs:comment>
+        <rdfs:label xml:lang="en">Left</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://automotive.eurecom.fr/vsso#LeftIndicator -->
 
 
@@ -5484,7 +5596,11 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#AirDistribution"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#FanSpeed"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#LocalTemperature"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -5500,7 +5616,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -5521,7 +5642,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#IsPassengerLightOn"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#IsSharedLightOn"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -5537,7 +5661,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -5552,7 +5681,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#LocalTemperature">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -5702,7 +5831,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#LumbarHeight"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#LumbarInflation"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -5718,7 +5850,13 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#AllPositions"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -5733,10 +5871,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#LumbarDeflate">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#LumbarPressureActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -5750,10 +5888,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#LumbarDown">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#SeatPositionActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -5790,10 +5928,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#LumbarInflate">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#LumbarPressureActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -5876,7 +6014,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#LumbarDeflate"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#LumbarDown"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#LumbarInflate"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#LumbarUp"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -5892,7 +6035,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -5907,10 +6055,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#LumbarUp">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#LumbarPositionActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -6028,7 +6176,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#DecreaseMassage"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#IncreaseMassage"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -6044,7 +6195,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -6100,7 +6256,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#DeclinedMediaURI"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#MediaAction"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#MediaVolume"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#SelectedMediaURI"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -6121,7 +6282,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#MediaAction">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -6197,7 +6358,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#MediaSource">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -6273,7 +6434,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#MediaVolume">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -6321,7 +6482,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -6336,7 +6500,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#MirrorHeatingStatus">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -6366,7 +6530,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#MirrorPan">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -6418,7 +6582,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#MirrorTilt">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -6488,7 +6652,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#MirrorPan"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#MirrorTilt"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -6567,7 +6734,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#O2Current"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#O2Voltage"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -6594,7 +6764,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#O2Current"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#O2Voltage"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -6602,7 +6775,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#partOf"/>
-                <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#Bank2"/>
+                <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#OBD"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment xml:lang="en">Signal/Attribute.OBD.O2.Bank2.Sensor1 : Oxygen sensor</rdfs:comment>
@@ -6667,7 +6840,62 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#AbsoluteLoad"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#AcceleratorPositionD-E-F"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#AirStatus"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#AmbientAirTemperature"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#AuxInputStatus"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#BarometricPressure"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#CommandedEGR"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#CommandedEVAP"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#CommandedEquivalenceRatio"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ControlModuleVoltage"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#CoolantTemperature"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#DistanceSinceDTCClear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#DistanceWithMIL"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#EGRError"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#EVAPVaporPressure"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#EVAPVaporPressureAbsolute"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#EVAPVaporPressureAlternate"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#EngineLoad"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#EngineOilTemperature"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#EthanolPercent"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#FreezeDTC"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#FuelInjectionTiming"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#FuelPressure"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#FuelRailPressureAbsolute"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#FuelRailPressureDirect"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#FuelRailPressureVac"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#FuelRate"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#FuelStatus"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#FuelType"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#HybridBatteryRemaining"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#IntakeTemperature"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#LongTermFuelTrim"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#LongTermO2Trim"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#MAF"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#MAP"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#MaxMAF"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#PidsA"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#PidsB"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#PidsC"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#RelativeAcceleratorPosition"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#RelativeThrottlePosition"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#RotationSpeed"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#RunTime"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#RunTimeMIL"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ShortTermFuelTrim"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ShortTermO2Trim"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#TankLevel"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ThrottleActuation"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ThrottlePosition"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ThrottlePositionB-C"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#TimeSinceDTCCleared"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#TimingAdvance"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#VehicleSpeed"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#WarmupsSinceDTCClear"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -6694,7 +6922,11 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#DTCCount"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#IgnitionType"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#MIL"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -6739,7 +6971,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ObstacleDetectionError"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ObstacleDetectionIsActive"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -6783,7 +7018,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#ObstacleDetectionIsActive">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -6888,6 +7123,13 @@
     
 
 
+    <!-- http://automotive.eurecom.fr/vsso#Padwear -->
+
+
+    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#Padwear"/>
+    
+
+
     <!-- http://automotive.eurecom.fr/vsso#ParkingBrake -->
 
 
@@ -6915,7 +7157,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#ParkingBrakeIsEngaged">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -7012,7 +7254,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#PerformanceMode">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -7117,7 +7359,13 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#MediaAlbum"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#MediaArtist"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#MediaSource"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#MediaTrack"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#MediaURI"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -7130,6 +7378,39 @@
         </rdfs:subClassOf>
         <rdfs:comment xml:lang="en">Signal/Attribute.Cabin.Infotainment.Media.Played : Collection of signals updated in concert when a new media is played</rdfs:comment>
         <rdfs:label xml:lang="en">Played</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://automotive.eurecom.fr/vsso#Position -->
+
+
+    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#Position">
+        <rdfs:comment xml:lang="en">Position of a branch</rdfs:comment>
+        <rdfs:label xml:lang="en">Position</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://automotive.eurecom.fr/vsso#Power -->
+
+
+    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#Power">
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://qudt.org/schema/qudt/unit"/>
+                <owl:allValuesFrom rdf:resource="http://qudt.org/schema/qudt/PowerUnit"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/isObservedBy"/>
+                <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#PowerMeter"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">Signal.Drivetrain.InternalCombustionEngine.Engine.Power : Current engine power output.</rdfs:comment>
+        <rdfs:label xml:lang="en">Power</rdfs:label>
     </owl:Class>
     
 
@@ -7225,6 +7506,17 @@
     
 
 
+    <!-- http://automotive.eurecom.fr/vsso#Rear -->
+
+
+    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#Rear">
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#Position"/>
+        <rdfs:comment xml:lang="en">rear position of a branch</rdfs:comment>
+        <rdfs:label xml:lang="en">Rear</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://automotive.eurecom.fr/vsso#RearFogLight -->
 
 
@@ -7257,7 +7549,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#RearShadePosition"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#RearShadeSwitch"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -7289,10 +7584,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#RearShadePosition">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#RearShadeActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -7306,10 +7601,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#RearShadeSwitch">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#RearShadeSystem"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -7357,7 +7652,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#RearviewMirrorDimmingLevel">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -7399,10 +7694,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#ReclineBackward">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#SeatPositionActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -7416,10 +7711,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#ReclineForward">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#SeatPositionActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -7439,7 +7734,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ReclineBackward"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ReclineForward"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -7455,7 +7753,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -7508,6 +7811,17 @@
         </rdfs:subClassOf>
         <rdfs:comment xml:lang="en">Signal.OBD.RelativeThrottlePosition : PID 45 - Relative throttle position</rdfs:comment>
         <rdfs:label xml:lang="en">RelativeThrottlePosition</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://automotive.eurecom.fr/vsso#Right -->
+
+
+    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#Right">
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#Position"/>
+        <rdfs:comment xml:lang="en">Right position of a branch</rdfs:comment>
+        <rdfs:label xml:lang="en">Right</rdfs:label>
     </owl:Class>
     
 
@@ -7653,7 +7967,14 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#IsBelted"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#SeatHasPassenger"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#SeatHeating"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#SeatMassage"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#SeatPosition"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#SeatRecline"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -7669,7 +7990,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -7684,10 +8010,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#SeatBackward">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#SeatPositionActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -7712,10 +8038,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#SeatCooling">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#SeatCooler"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -7729,10 +8055,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#SeatDown">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#LumbarPositionActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -7746,10 +8072,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#SeatForward">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#SeatPositionActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -7917,7 +8243,14 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#SeatBackward"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#SeatCooling"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#SeatDown"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#SeatForward"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#SeatUp"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#SeatWarming"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -7933,7 +8266,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -7948,10 +8286,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#SeatUp">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#SeatPositionActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -7965,10 +8303,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#SeatWarming">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#SeatHeater"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -7982,7 +8320,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#SelectedMediaURI">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -8076,7 +8414,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -8120,7 +8463,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#DeflateSideBolster"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#InflateSideBolster"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -8136,7 +8482,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -8151,7 +8502,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#SpeedSet">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -8196,7 +8547,11 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#SteeringWheelAngle"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#SteeringWheelExtension"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#SteeringWheelTilt"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -8251,7 +8606,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#SteeringWheelExtension">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -8303,7 +8658,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#SteeringWheelTilt">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -8339,7 +8694,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#SunRoofShadePosition"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#SunRoofShadeSwitch"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -8360,10 +8718,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#SunRoofShadePosition">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#RearShadeActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -8377,10 +8735,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#SunRoofShadeSwitch">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#RearShadeSystem"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -8400,7 +8758,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#SunroofPosition"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#SunroofSwitch"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -8466,10 +8827,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#SunroofSwitch">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#SunroofPositionActuator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -8489,7 +8850,11 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#TCSError"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#TCSIsActive"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#TCSIsEngaged"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -8533,7 +8898,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#TCSIsActive">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -8654,7 +9019,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#ThrottleActuation">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -8834,7 +9199,11 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#TirePressure"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#TirePressureLow"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#TireTemperature"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -8850,7 +9219,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -9008,7 +9382,15 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ClutchWear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Gear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#GearChangeMode"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#GearboxTemperature"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#PerformanceMode"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#VehicleSpeed"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#travelledDistance"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -9058,7 +9440,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#TrunkIsLocked"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#TrunkIsOpen"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -9079,7 +9464,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#TrunkIsLocked">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -9109,7 +9494,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#TrunkIsOpen">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -9181,7 +9566,16 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#AccumulatedDriveTime"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#AccumulatedIdleTime"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#AccumulatedIgnitionOffTime"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#AccumulatedIgnitionOnTime"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#AccumulatedTravelledDistance"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#AmbientAirTemperature"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#TravelledDistance"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#VehicleSpeed"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -9371,7 +9765,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#WasherFluidLevel"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#WasherFluidLevelLow"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -9387,7 +9784,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -9471,7 +9871,12 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -9492,7 +9897,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#WindowPosition"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#WindowSwitch"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -9508,7 +9916,13 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#AllPositions"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -9563,7 +9977,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#hasSignal"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:unionOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#WindowShadePosition"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#WindowShadeSwitch"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -9579,7 +9996,13 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#AllPositions"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Left"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Right"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -9594,7 +10017,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#WindowShadePosition">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/sosa/isActuatedBy"/>
@@ -9611,10 +10034,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#WindowShadeSwitch">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#RearShadeSystem"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -9628,10 +10051,10 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#WindowSwitch">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+                <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
                 <owl:allValuesFrom rdf:resource="http://automotive.eurecom.fr/vsso#RearShadeSystem"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -9702,7 +10125,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -9717,7 +10143,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#WindshieldHeatingStatus">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -9787,7 +10213,10 @@
                 <owl:onProperty rdf:resource="http://automotive.eurecom.fr/vsso#position"/>
                 <owl:allValuesFrom>
                     <owl:Class>
-                        <owl:oneOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Front"/>
+                            <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Rear"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
             </owl:Restriction>
@@ -9802,7 +10231,7 @@
 
 
     <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#WipingStatus">
-        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuableSignal"/>
+        <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ActuatableSignal"/>
         <rdfs:subClassOf rdf:resource="http://automotive.eurecom.fr/vsso#ObservableSignal"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -9825,6 +10254,20 @@
         <rdfs:comment xml:lang="en">Signal.Body.Windshield.Front.Wiping.Status : Front wiper status</rdfs:comment>
         <rdfs:label xml:lang="en">Status</rdfs:label>
     </owl:Class>
+    
+
+
+    <!-- http://automotive.eurecom.fr/vsso#isDomeLightOn -->
+
+
+    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#isDomeLightOn"/>
+    
+
+
+    <!-- http://automotive.eurecom.fr/vsso#travelledDistance -->
+
+
+    <owl:Class rdf:about="http://automotive.eurecom.fr/vsso#travelledDistance"/>
     
 
 
@@ -10045,7 +10488,7 @@
      -->
 
 
-    <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ActuableSignal">
+    <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#ActuatableSignal">
         <rdfs:comment xml:lang="en">All actuable signals that can dynamically be updated by the vehicle</rdfs:comment>
         <rdfs:label xml:lang="en">Actuable signal</rdfs:label>
     </rdf:Description>
@@ -10056,10 +10499,6 @@
     <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#Speedometer">
         <rdfs:comment xml:lang="en">Sensor measuring the speed, in a gearbox</rdfs:comment>
         <rdfs:label xml:lang="en">Speedometer</rdfs:label>
-    </rdf:Description>
-    <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#SteeringWheelSide">
-        <rdfs:comment xml:lang="en">Attribute.Cabin.SteeringWheel.Position : Position of the steering wheel inside the cabin</rdfs:comment>
-        <rdfs:label xml:lang="en">Position</rdfs:label>
     </rdf:Description>
     <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#axleCount">
         <rdfs:comment xml:lang="en">Attribute.Chassis.Axle.Count : Number of axles on the vehicle</rdfs:comment>
@@ -10156,6 +10595,10 @@
     <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#rowCount">
         <rdfs:comment xml:lang="en">Attribute.Cabin.Seat.RowCount : Number of seat rows in vehicle</rdfs:comment>
         <rdfs:label xml:lang="en">RowCount</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#steeringWheelSide">
+        <rdfs:comment xml:lang="en">Attribute.Cabin.SteeringWheel.Position : Position of the steering wheel inside the cabin</rdfs:comment>
+        <rdfs:label xml:lang="en">Position</rdfs:label>
     </rdf:Description>
     <rdf:Description rdf:about="http://automotive.eurecom.fr/vsso#tankCapacity">
         <rdfs:comment xml:lang="en">Attribute.Drivetrain.FuelSystem.TankCapacity : Capacity of the fuel tank in liters</rdfs:comment>

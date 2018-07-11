@@ -6,7 +6,8 @@
 
 
 <!-- SCHEMA.ORG METADATA -->
-<script type="application/ld+json">{"@context":"http://schema.org","@type":"TechArticle","url":"http://automotive.eurecom.fr/vsso#","image":"http://vowl.visualdataweb.org/webvowl/#iri=http://automotive.eurecom.fr/vsso#","name":"VSSo", "headline":"This ontology describes the car's attributes, branches and signals defined in GENIVI's Vehicle Signal Specification.", "datePublished":"2018-06-01", "version":"v0.1 01/06/2018 - Most VSS concepts are mapped"}</script>
+<script type="application/ld+json">{"@context":"http://schema.org","@type":"TechArticle","url":"http://automotive.eurecom.fr/vsso#","image":"http://vowl.visualdataweb.org/webvowl/#iri=http://automotive.eurecom.fr/vsso#","name":"VSSo", "headline":"VSSo, or VSS ontology is an ontology for describing automotive attributes, branches and signals.
+It is based on the Vehicle Signal Specification (GENIVI) and reuses the SSN/SOSA pattern for signals.", "datePublished":"Wed Jul 11 15:57:37 CEST 2018"}</script>
 
 <script src="resources/jquery.js"></script> 
 <script src="resources/marked.min.js"></script> 
@@ -47,6 +48,7 @@ function loadTOC(){
       $("#abstract").load("sections/abstract-en.html"); 
       $("#overview").load("sections/overview-en.html"); 
       $("#description").load("sections/description-en.html"); 
+      $("#references").load("sections/references-en.html"); 
       $("#crossref").load("sections/crossref-en.html", null, loadHash); 
     });
     </script> 
@@ -57,15 +59,11 @@ function loadTOC(){
 <div class="head">
 <div style="float:right">language <a href="index-en.html"><b>en</b></a> </div>
 <h1>VSSo</h1>
-<h2>Release  2018-06-01</h2>
 
 
 <dl>
-<dt>Revision:</dt>
-<dd>v0.1 01/06/2018 - Most VSS concepts are mapped</dd>
 <dt>Download serialization:</dt><dd><span><a href="ontology.json" target="_blank"><img src="https://img.shields.io/badge/Format-JSON_LD-blue.svg" alt="JSON-LD" /></a> </span><span><a href="ontology.xml" target="_blank"><img src="https://img.shields.io/badge/Format-RDF/XML-blue.svg" alt="RDF/XML" /></a> </span><span><a href="ontology.nt" target="_blank"><img src="https://img.shields.io/badge/Format-N_Triples-blue.svg" alt="N-Triples" /></a> </span><span><a href="ontology.ttl" target="_blank"><img src="https://img.shields.io/badge/Format-TTL-blue.svg" alt="TTL" /></a> </span></dd><dt>License: </dt><dd><a href="http://insertlicenseURIhere.org" target="_blank"><img src="https://img.shields.io/badge/License-license%20name%20goes%20here-blue.svg" alt="http://insertlicenseURIhere.org" /></a>
-</dd><dt>Visualization:</dt><dd><a href="webvowl/index.html#ontology" target="_blank"><img src="https://img.shields.io/badge/Visualize_with-WebVowl-blue.svg" alt="Visualize with WebVowl" /></a></dd>
-</dl>
+</dd></dl>
 
 <hr/>
 </div>
@@ -77,6 +75,7 @@ function loadTOC(){
 <div id="toc"></div>     <div id="overview"></div>
      <div id="description"></div>
      <div id="crossref"></div>
+     <div id="references"></div>
 <div id="acknowledgements">
 <h2 id="ack" class="list">Acknowledgements <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
 <p>
