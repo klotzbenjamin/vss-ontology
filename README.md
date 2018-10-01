@@ -6,7 +6,7 @@ VSSo is an ontology created from GENIVI's Vehicle Signal Specification and the S
 Each project has its own folder. The current structure is as follows
 ### [docs](https://github.com/klotzbenjamin/vss-ontology/tree/master/docs)
 This contains the html documentation about VSSo, automatically generated using WIDOCO.
-The rendered page is available at https://klotzbenjamin.github.io/vss-ontology/
+The rendered page is available at http://automotive.eurecom.fr/vsso
 ### [rdf-generation](https://github.com/klotzbenjamin/vss-ontology/tree/master/rdf-generation)
 This contains the script for extending VSSo according to the priciple of private branches in the vehicle signal specification.
 ### [trajectory-annotation](https://github.com/klotzbenjamin/vss-ontology/tree/master/trajectory-annotation)
@@ -225,16 +225,3 @@ FILTER regex(str(?steeringWheelSide),str(?position))
 ORDER BY DESC(?time)
 LIMIT 1
 ```
-#### What are the current values of signals defining the driver seat position?
-```SPARQL
-```
-#### When was the last time the speed was over 100 km/h?
-```SPARQL
-```
-#### Where was the last time the driver door was unlocked?
-```SPARQL
-```
-#### What was the maximal speed reached by the car?
-```SPARQL
-```
-
