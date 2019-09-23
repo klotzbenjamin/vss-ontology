@@ -136,7 +136,7 @@ WHERE { ?sensor sosa:observes ?signal.
 SELECT (count(distinct ?sensor) as ?nbSpeedSensors)
 WHERE { ?sensor a vsso:Speedometer.}
 ```
-#### In which part of thismy car is produced the signal vsso:LongitudinalAcceleration?
+#### In which part of this car is produced the signal vsso:LongitudinalAcceleration?
 ```SPARQL
 SELECT ?branch ?branchType
 WHERE { ?branch  a  ?branchType;
