@@ -4,7 +4,7 @@ This repository contains the research project carried out around the development
 The VSSo ontology is available in [Turtle](vsso.ttl).
 
 ## Folder structure
-Thus repository is structured as follows:
+The repository is structured as follows:
 ### [docs](docs)
 This folder contains the html documentation of VSSo, automatically generated using [WIDOCO](https://github.com/dgarijo/Widoco). The rendered page is available at http://automotive.eurecom.fr/vsso
 ### [rdf-generation](rdf-generation)
