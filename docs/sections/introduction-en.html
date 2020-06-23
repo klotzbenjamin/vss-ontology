@@ -1,10 +1,10 @@
 <html><h2 id="intro" class="list">Introduction <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
 <span class="markdown">
 VSSo is a Vehicle Signal and Attribute ontology. Is is meant to be used as a domain ontology for [<a href="#bib-SOSA">SOSA</a>] or the [<cite><a href="#bib-wot-architecture">Web of Things</a></cite>]. Signals are SOSA Observable or Actuatable properties, while static attributes are properties of Vehicle branches.
-The units used are declared in [<cite><a href="#bib-QUDT">QUDT</a></cite>] unit types, and do not restrict to a specific unit (e.g. qudt:LinearVelocityUnit enable the usage of km/h or mph). Likewise, Attributes that refer to a phenonmenon  requireing a unit are restricted to [<cite><a href="#bib-cdt">custom-datatypes</a></cite>] refering to the correct unit system (e.g. vsso:maxPower is in custom-datatype:power)</span>
+The units used are declared in [<cite><a href="#bib-QUDT">QUDT</a></cite>] unit types, and do not restrict to a specific unit (e.g. <code>qudt:LinearVelocityUnit</code> enables the usage of km/h or mph). Likewise, Attributes that refer to a phenonmenon  requiring a unit are restricted to [<cite><a href="#bib-cdt">custom-datatypes</a></cite>] refering to the correct unit system (e.g. <code>vsso:maxPower</code> is in custom-datatype: power)</span>
 
 <span class="markdown">
-In VSSo, signals are functions that convey "information about the behavior or attributes of some phenomenon" [<a href="#bib-Signal-Processing">Signal</a>]. As such, they may or may not relate to sensors or actuators, and always to the phenomenon they describe. We often refer to a signal by the phenomenon it is related to. For example, an instance of vsso:AmbientAirTemperature is a signal referring to the temperature measured by some sensor of a vehicle, and is readable.</span>
+In VSSo, signals are functions that convey "information about the behavior or attributes of some phenomenon" [<a href="#bib-Signal-Processing">Signal</a>]. As such, they may or may not relate to sensors or actuators, and always to the phenomenon they describe. We often refer to a signal by the phenomenon it is related to. For example, an instance of <code>vsso:AmbientAirTemperature</code> is a signal referring to the temperature measured by some sensor of a vehicle, and is readable.</span>
 
 <div id="namespacedeclarations">
 <h3 id="ns" class="list">Namespace declarations</h3>
