@@ -13,15 +13,15 @@
 
 vsso: rdf:type owl:Ontology ;
   owl:imports sosa: ;
-  dct:title "VSSo";
+  dct:title "VSSo: The GENIVI VSS Ontology";
   vann:preferredNamespaceUri "http://automotive.eurecom.fr/vsso" ;
   dct:issued "2018-04-23"^^xsd:date ;
   dc:description "This ontology describes the car's attributes, branches and signals defined in GENIVI's Vehicle Signal Specification." ;
-  # dct:license TODO ;
-  dct:modified "2018-06-01" ;
+  dct:license <http://creativecommons.org/licenses/by/4.0/> ;
+  dct:modified "2020-06-23"^^xsd:date ;
   dct:created "2018-01-10"^^xsd:date ;
-  #dct:creator TODO ;
-  owl:versionInfo """v0.1 01/06/2018 - Most VSS concepts are mapped"""@en ;
+  dct:creator Benjamin Klotz, Raphael Troncy, Daniel Wilms ;
+  owl:versionInfo """v1.0 23/06/2020"""@en ;
   vann:preferredNamespacePrefix "vsso" .
 
 #TODO: check values in vsso:position datatypes
