@@ -1,5 +1,5 @@
 # VSSo: a Vehicle Signals and Attribute Ontology
-This folder contains the research project carried out around the development, extension and usage of VSSo. 
+This repository contains the research project carried out around the development, extension and usage of VSSo. 
 VSSo is an ontology created from GENIVI's Vehicle Signal Specification and the SOSA patterns for observations and actuations.
 
 ## Folder structure
