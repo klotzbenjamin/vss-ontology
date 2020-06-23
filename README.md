@@ -25,4 +25,4 @@ If you use VSSo in a scientific publication, we would appreciate citations to th
 ```
 
 ### License
-The code is licensed under the [Apache-2.0 License](https://www.apache.org/licenses/LICENSE-2.0). The VSSo ontology is licensed under the [CC 4.0 Licence]http://creativecommons.org/licenses/by/4.0/).
+The code is licensed under the [Apache-2.0 License](https://www.apache.org/licenses/LICENSE-2.0). The VSSo ontology is licensed under the [CC 4.0 Licence](http://creativecommons.org/licenses/by/4.0/).
