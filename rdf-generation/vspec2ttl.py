@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 #
-# Convert vspec file to RDF (turtle srialization)
+# Convert vspec file to RDF (turtle serialization)
 #
 from openpyxl import load_workbook
 from rdflib import Graph
@@ -353,7 +353,7 @@ if __name__ == "__main__":
     if len(args) != 2:
         usage()
 
-    args.append(args[1].split(".")[0]+"Extension.ttl")
+    args.append(args[1].split(".")[0]+"-extension.ttl")
     rdf_out = open (args[1], "w")
     rdf_out_ext = open (args[2], "w")
 
@@ -398,13 +398,13 @@ if __name__ == "__main__":
     print "parsing generated ontologies"
     g = Graph()
     try:
-        g.parse("generatedVSSo.ttl",format='turtle')
+        g.parse("vsso.ttl",format='turtle')
     except Exception,e:
-        print "The generated ontology generatedVSSo could not be parsed. Error "+str(e)
+        print "The generated ontology vsso could not be parsed. Error "+str(e)
     try:
-        g.parse("generatedVSSoExtension.ttl",format='turtle')
+        g.parse("vsso-extension.ttl",format='turtle')
     except Exception,e:
-        print "The generated ontology generatedVSSoExtension could not be parsed. Error "+str(e)
+        print "The generated ontology vsso-extension could not be parsed. Error "+str(e)
     
     print "The 2 generated ontologies could be parsed"
     print "Please check that the generated queries follow the SOSA pattern and do not contain hominymy"
