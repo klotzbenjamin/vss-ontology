@@ -1,16 +1,16 @@
-#Generation of a private extension of VSSo
+# Generation of a private extension of VSSo
 
 ## Setup
 Put the vehicle signal specification and this repo in a common folder. 
-### Get the vehicle signal specification
 
+### Get the vehicle signal specification
 ```shell
 git clone https://github.com/GENIVI/vehicle_signal_specification
 ```
 ### Get the VSSo repo
 ```shell
-git clone https://github.com/klotzbenjamin/vss-ontology
-cd VSSontology/rdf-generation
+git clone https://github.com/w3c/vsso
+cd rdf-generation
 ```
 
 ## Functions usage
